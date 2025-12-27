@@ -1,0 +1,262 @@
+/* 1. Global Dark Background for the page/container */
+body {
+  margin: 0;
+  background-color: #0f172a; /* Deep slate blue/black background */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif; /* Modern clean font */
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 50px;
+  min-height: 100vh;
+}
+
+/* 2. The Card - Dark Glassy Look */
+.card {
+  background: #1e293b; /* Lighter than body */
+  border: 1px solid #334155; /* Subtle border */
+  border-radius: 20px; /* Modern rounded corners */
+  padding: 30px;
+  text-align: center;
+  max-width: 280px;
+  width: 100%;
+  position: relative;
+  overflow: hidden; /* Keeps image zoom inside the borders */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy smooth transition */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+/* 3. Hover Effects */
+.card:hover {
+  transform: translateY(-10px); /* Lifts up */
+  border-color: #38bdf8; /* Border turns light blue */
+  box-shadow: 0 20px 40px rgba(56, 189, 248, 0.15); /* Blue glow */
+}
+
+/* 4. Image Styling */
+.card .card-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #0f172a; /* Matches body bg to look like a 'cutout' */
+  box-shadow: 0 0 0 4px #38bdf8; /* Blue ring */
+  margin-bottom: 20px;
+  transition: transform 0.4s ease;
+}
+
+/* Image spins slightly or zooms on hover */
+.card:hover .card-image {
+  transform: scale(1.1); /* Slight zoom */
+}
+
+/* 5. Typography */
+.card .card-title {
+  margin: 0 0 10px 0;
+  color: #f8fafc; /* Almost white */
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.card .card-text {
+  color: #94a3b8; /* Muted aesthetic gray */
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Container for the icons */
+.card-socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px; /* Spacing from the text */
+}
+
+/* The Icon Button */
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Perfect circle */
+  background-color: #334155; /* Slightly lighter than card bg */
+  color: #cbd5e1; /* Icon color (light gray) */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* Specific Style for LinkedIn Hover */
+.social-icon.linkedin:hover {
+  background-color: #0077b5; /* Official LinkedIn Blue */
+  color: #ffffff; /* Icon turns white */
+  box-shadow: 0 0 15px rgba(0, 119, 181, 0.6); /* Glow effect */
+  transform: translateY(-3px); /* Floating effect */
+}
+
+/* SVG Size Control */
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 1. The Container */
+.header-banner {
+  width: 100%;
+  height: 300px; /* Adjust height to match the crop you want */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* Needed for the overlay positioning */
+}
+
+/* 2. The Dark Blue Overlay */
+/* This creates the blue tint seen in your photo without editing the image itself */
+.header-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.75); /* Dark Slate Blue with 75% opacity */
+  /* Alternatively, strictly strictly mimicking the photo's blur and darkness: */
+  backdrop-filter: blur(2px); 
+  
+  /* Centering Logic */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 3. The Text Styling */
+.header-title {
+  color: #ffffff;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 3rem; /* Large and bold */
+  font-weight: 800;
+  text-transform: uppercase; /* Forces "ABOUT US" even if you type "About Us" */
+  letter-spacing: 2px; /* Slight space between letters for that premium look */
+  margin: 0;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Drop shadow to make text pop */
+}
+
+/* 1. The Container for the text */
+.about-section {
+  background-color: #000000; /* Pure black background like the photo */
+  padding: 60px 20px; /* Generous padding top/bottom */
+  display: flex;
+  justify-content: center; /* Centers the text block in the middle of the screen */
+}
+
+/* 2. The Text Paragraph */
+.about-text {
+  color: #ffffff; /* Bright white text */
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif; /* Clean, standard sans-serif font */
+  font-size: 1.1rem; /* Slightly larger than default for readability */
+  line-height: 1.8; /* Key styling: This adds the space between lines seen in the photo */
+  max-width: 1000px; /* Constraints width so lines aren't too long to read */
+  margin: 0;
+  text-align: left; /* Aligns text to the left */
+  font-weight: 400; /* Normal weight */
+}
+
+/* 1. Mission Container */
+.mission-section {
+  background-color: #000000; /* Continuous black background */
+  padding: 50px 20px; /* Space inside the borders */
+  margin: 0; /* Remove gaps between sections */
+  
+  /* The Red Dotted Borders */
+  border-top: 2px dotted #ff0000;
+  border-bottom: 2px dotted #ff0000;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the content */
+}
+
+/* 2. Mission Title */
+.mission-title {
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 2.5rem; /* Large bold title */
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 30px; /* Space between title and text */
+}
+
+/* 3. Mission Text */
+.mission-text {
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 1000px; /* Matches the width of the About text */
+  text-align: left; /* Keeps the paragraph blocky and readable */
+}
+
+/* 1. Partners Section Container */
+.partners-section {
+  background-color: #000000; /* Seamless black match */
+  padding: 40px 20px; /* Vertical spacing */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Optional: A subtle border below to separate from the text */
+  border-bottom: 1px solid #111; 
+}
+
+/* 2. The Logo Image */
+.partners-image {
+  max-width: 1000px; /* Matches the text width */
+  width: 100%; /* Responsive: shrinks on mobile */
+  height: auto; /* Maintains aspect ratio */
+  opacity: 0.9; /* Slight dim to make it look premium/blended */
+  transition: opacity 0.3s ease;
+}
+
+/* Hover effect: make logos fully bright when hovered */
+.partners-image:hover {
+  opacity: 1;
+}
+
+.footer {
+  /* Deep dark background (slightly darker than the cards) */
+  background-color: #020617; 
+  
+  /* Subtle border on top to separate it from the rest of the page */
+  border-top: 1px solid #1e293b; 
+  
+  /* Spacing */
+  padding: 30px 0;
+  margin-top: auto; /* Keeps footer at the bottom if using Flexbox layout */
+  text-align: center;
+}
+
+.footer-text {
+  /* Muted gray text for a clean look */
+  color: #94a3b8; 
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.875rem; /* Small, sleek text (14px) */
+  letter-spacing: 0.5px; /* Slight spacing for readability */
+  margin: 0;
+}
+
+.brand-name {
+  /* The same 'Electric Blue' accent used in the Card hover */
+  color: #38bdf8; 
+  font-weight: 600;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Optional: Make the brand name glow slightly on hover */
+.brand-name:hover {
+  color: #7dd3fc;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
