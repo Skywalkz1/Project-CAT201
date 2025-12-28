@@ -3,6 +3,9 @@ import Header from "./Header.jsx"
 import Footer from "./Footer.jsx"
 import profilePic1 from './assets/Syazril.png'
 import profilePic2 from './assets/Haris_Zakuwan.jpg'
+import profilePic3 from './assets/AqilAsyraf.jpeg'
+
+
 
 function App() {
 
@@ -12,7 +15,7 @@ function App() {
     <div className="cards-container">
       <Card linkedinUrl='https://www.linkedin.com/in/s-iman-b72129232/' profilePic={profilePic1} name="Syazril Iman" text="Data Scientist in the Making | Passionate About Analytics, AI, and Business Intelligence"/>
       <Card linkedinUrl='https://www.linkedin.com/in/hrszkwnn/' profilePic={profilePic2} name="Haris Zakuwan" text=" Software Engineer in Progress | Dedicated to Solving Complex Problems through Efficient Algorithms and Design "/>
-      <Card />
+      <Card linkedinUrl='https://my.linkedin.com/in/aqil-asyraf-93959618a' profilePic={profilePic3} name="Aqil Asyraf" text="Software Engineer in Progress | Passionate About Web Development and Problem Solving"/>
       <Card />
     </div>
     <Footer />
