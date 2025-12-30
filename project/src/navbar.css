@@ -1,0 +1,106 @@
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #050505; /* Matches your header black */
+  padding: 15px 50px;
+  border-bottom: 1px solid #333;
+  font-family: 'Inter', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* 1. Logo Styling */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-circle {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #000;
+  font-weight: 900;
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+/* 2. Navigation Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem; /* Adjusted to match your image text size */
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+  text-transform: uppercase; /* Matches the "ABOUT" style in your image */
+  letter-spacing: 0.5px;
+}
+
+.nav-item:hover {
+  color: #38bdf8;
+}
+
+.nav-item svg {
+  margin-left: 8px;
+  transition: transform 0.3s;
+}
+
+.nav-item:hover svg {
+  stroke: #38bdf8;
+  transform: translateY(2px);
+}
+
+/* 3. Cart Styling */
+.navbar-cart {
+  display: flex;
+  align-items: center;
+}
+
+.cart-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #050505;
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none; 
+  }
+}
