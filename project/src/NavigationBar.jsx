@@ -32,7 +32,7 @@ function Navbar() {
       <ul className="nav-links">
         <li>
           {/* Points to /about defined in App.jsx */}
-          <Link to="/about" className="nav-item">About <ChevronDown /></Link>
+          <Link to="/about" className="nav-item">About</Link>
         </li>
         <li>
           {/* Points to /services (your PC Builder) defined in App.jsx */}
@@ -40,13 +40,13 @@ function Navbar() {
         </li>
         <li>
           {/* Placeholders using '#' since we haven't built these yet */}
-          <Link to="#" className="nav-item">Shop Now <ChevronDown /></Link>
+          <Link to="#" className="nav-item">Shop Now </Link>
         </li>
         <li>
-          <Link to="#" className="nav-item">Support <ChevronDown /></Link>
+          <Link to="#" className="nav-item">Support </Link>
         </li>
         <li>
-          <Link to="#" className="nav-item">Contact Us <ChevronDown /></Link>
+          <Link to="#" className="nav-item">Contact Us </Link>
         </li>
       </ul>
 
