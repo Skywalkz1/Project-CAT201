@@ -46,7 +46,7 @@ function Navbar() {
           <Link to="#" className="nav-item">Support </Link>
         </li>
         <li>
-          <Link to="#" className="nav-item">Contact Us </Link>
+          <Link to="/ContactUs" className="nav-item">Contact Us </Link>
         </li>
       </ul>
 
