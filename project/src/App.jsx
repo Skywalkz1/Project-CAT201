@@ -4,6 +4,7 @@ import About from "./About.jsx"       // Import the Home page
 import Services from './Services.jsx' // Import the Services page
 import OurLocations from './OurLocations.jsx' // Import the Contact Us page
 import ShopLaptop from './ShopLaptop.jsx' 
+import Footer from './Footer.jsx'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/shoplaptop" element={<ShopLaptop />} />
         <Route path="/ContactUs" element={<OurLocations />} />
       </Routes>
+      <Footer/>
     </>
   )
 }

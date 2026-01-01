@@ -51,10 +51,6 @@ const laptops = [
 
 const ShopLaptop = () => {
   return (
-    <>
-      {/* 🔴 DELETE THE NAVBAR LINE BELOW TO FIX THE CRASH 🔴 */}
-      {/* <Navbar /> */} 
-      
       <div className="shop-page-container">
         
         {/* Header Section */}
@@ -87,8 +83,6 @@ const ShopLaptop = () => {
         </div>
         
       </div>
-      <Footer />
-    </>
   );
 };
 
