@@ -34,6 +34,69 @@ const PC_DATA = [
         { id: 'gpu_4060', name: 'Nvidia RTX 4060 8GB OC', price: 1499 },
     ]
   },
+   {
+    id: 'cat_ram',
+    name: '08. RAM',
+    products: [
+        { id: 'ram_ddr5_gskill', name: 'Gskill Trident Z 16GB 7000MT', price: 9999 },
+    ]
+  },
+     {
+    id: 'cat_ram',
+    name: '08. RAM',
+    products: [
+        { id: 'ram_ddr5_gskill', name: 'Gskill Trident Z 16GB 7000MT', price: 9999 },
+    ]
+  },
+     {
+    id: 'cat_ram',
+    name: '08. RAM',
+    products: [
+        { id: 'ram_ddr5_gskill', name: 'Gskill Trident Z 16GB 7000MT', price: 9999 },
+    ]
+  },
+     {
+    id: 'cat_ram',
+    name: '08. RAM',
+    products: [
+        { id: 'ram_ddr5_gskill', name: 'Gskill Trident Z 16GB 7000MT', price: 9999 },
+    ]
+  },
+     {
+    id: 'cat_ram',
+    name: '08. RAM',
+    products: [
+        { id: 'ram_ddr5_gskill', name: 'Gskill Trident Z 16GB 7000MT', price: 9999 },
+    ]
+  },
+     {
+    id: 'cat_ram',
+    name: '08. RAM',
+    products: [
+        { id: 'ram_ddr5_gskill', name: 'Gskill Trident Z 16GB 7000MT', price: 9999 },
+    ]
+  },
+     {
+    id: 'cat_ram',
+    name: '08. RAM',
+    products: [
+        { id: 'ram_ddr5_gskill', name: 'Gskill Trident Z 16GB 7000MT', price: 9999 },
+    ]
+  },
+     {
+    id: 'cat_ram',
+    name: '08. RAM',
+    products: [
+        { id: 'ram_ddr5_gskill', name: 'Gskill Trident Z 16GB 7000MT', price: 9999 },
+    ]
+  },
+     {
+    id: 'cat_ram',
+    name: '08. RAM',
+    products: [
+        { id: 'ram_ddr5_gskill', name: 'Gskill Trident Z 16GB 7000MT', price: 9999 },
+    ]
+  },
 ];
 
 function Services() {

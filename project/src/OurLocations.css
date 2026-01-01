@@ -5,35 +5,6 @@
     background-color: #1a1a1a;
   }
   
-  .location-header {
-    background-image: url('assets/image_3a7561.jpg'); 
-    background-size: cover;
-    background-position: center;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .location-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
-  }
-  
-  .location-header h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    position: relative;
-    z-index: 1;
-    text-transform: uppercase;
-  }
-  
   .location-content {
     display: flex;
     flex-wrap: wrap;
