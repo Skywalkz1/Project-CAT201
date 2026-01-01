@@ -39,14 +39,14 @@ function Navbar() {
           <Link to="/services" className="nav-item">Customize Your Own</Link>
         </li>
         <li>
-          {/* Placeholders using '#' since we haven't built these yet */}
-          <Link to="#" className="nav-item">Shop Now </Link>
+          {/* Link to Shop page */}
+          <Link to="/shoplaptop" className="nav-item">Shop Now </Link>
         </li>
         <li>
           <Link to="#" className="nav-item">Support </Link>
         </li>
         <li>
-          <Link to="#" className="nav-item">Contact Us </Link>
+          <Link to="/ContactUs" className="nav-item">Contact Us </Link>
         </li>
       </ul>
 
