@@ -1,7 +1,8 @@
 import React from 'react';
-import './OurLocations.css'; // Assuming you have a separate CSS file
+import './OurLocations.css';
 import HeaderBanner from './HeaderBanner';
-import Footer from './Footer';
+import mapIcon from './assets/mapIcon.png';
+import phoneIcon from './assets/phoneIcon.png';
 
 const ContactItem = ({ icon, title, details }) => (
   <div className="contact-item">
@@ -36,19 +37,17 @@ const OurLocations = () => {
 
         <div className="contact-info">
           <ContactItem
-            icon={<i className="fas fa-store-alt" />}
-            title="HOODTECH PC SDN BHD "
+            icon={<img src={mapIcon} alt="Location Icon" />}
+            title="HOODTECH PC SDN BHD"
             details="TAMAN PEKAKA 1"
           />
           <ContactItem
-            icon={<i className="fas fa-phone-alt" />}
+            icon={<img src={phoneIcon} alt="Phone Icon" />}
             title="CONTACT NUMBER"
             details="+6011-59975191"
           />
-          {/* Add more ContactItem components for email, hours, etc. if needed */}
         </div>
       </div>
-
     </div>
   );
 };
