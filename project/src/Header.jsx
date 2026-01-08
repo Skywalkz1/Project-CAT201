@@ -1,19 +1,8 @@
-// 1. Import the existing images
-import headerBg from './assets/image_3a7561.jpg'; 
-
-// 2. Import the new partners image
 import partnersBg from './assets/image_3b569b.png';
 
 function Header() {
     return (
-        <>
-            {/* HERO BANNER */}
-            <header className="header-banner" style={{ backgroundImage: `url(${headerBg})` }}>
-                <div className="header-overlay">
-                    <h1 className="header-title">ABOUT US</h1>
-                </div>
-            </header>
-            
+        <>            
             {/* PARTNERS SECTION */}
             <div className="partners-section">
                 <img 

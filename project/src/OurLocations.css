@@ -1,104 +1,82 @@
 /* OurLocations.css */
 .our-locations-container {
-    font-family: sans-serif;
-    color: white;
-    background-color: #1a1a1a;
-  }
+  font-family: sans-serif;
+  color: white;
+  background-color: #1a1a1a;
+}
+
+.location-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px;
+  justify-content: space-between;
+  background-color: black;
+}
+
+.map-container {
+  flex: 1 1 500px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.contact-info {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #ff3b3b; 
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
-  .location-header {
-    background-image: url('assets/image_3a7561.jpg'); 
-    background-size: cover;
-    background-position: center;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .location-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
-  }
-  
+  margin-right: 20px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.contact-icon img {
+  width: 28px; 
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.contact-details h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+}
+
+.contact-details p {
+  margin: 0;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
   .location-header h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    position: relative;
-    z-index: 1;
-    text-transform: uppercase;
+    font-size: 2.5rem;
   }
-  
   .location-content {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 40px;
-    justify-content: space-between;
-    background-color: black;
-  }
-  
-  .map-container {
-    flex: 1 1 500px;
-    margin-right: 40px;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .contact-info {
-    flex: 1 1 400px;
-    display: flex;
     flex-direction: column;
-    gap: 30px;
+    padding: 20px;
   }
-  
-  .contact-item {
-    display: flex;
-    align-items: flex-start;
+  .map-container {
+    margin-right: 0;
+    margin-bottom: 20px;
   }
-  
-  .contact-icon {
-    font-size: 24px;
-    color: white;
-    background-color: #ff3b3b; /* Red color */
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 20px;
-    flex-shrink: 0;
-  }
-  
-  .contact-details h3 {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin: 0 0 10px 0;
-    text-transform: uppercase;
-  }
-  
-  .contact-details p {
-    margin: 0;
-    line-height: 1.5;
-    color: #ccc;
-  }
-  
-  @media (max-width: 768px) {
-    .location-header h1 {
-      font-size: 2.5rem;
-    }
-    .location-content {
-      flex-direction: column;
-      padding: 20px;
-    }
-    .map-container {
-      margin-right: 0;
-      margin-bottom: 20px;
-    }
-  }
+}
