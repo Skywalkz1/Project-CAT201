@@ -24,6 +24,14 @@ const CloseIcon = () => (
   </svg>
 );
 
+// Add this new Icon component with the others
+const UserIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+    <circle cx="12" cy="7" r="4"></circle>
+  </svg>
+);
+
 function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -54,12 +62,19 @@ function Navbar() {
 
       {/* Actions: Cart & Hamburger */}
       <div className="navbar-actions">
+        
+        {/* Add this Link wrapper around the new UserIcon */}
+        <NavLink to="/login" className="cart-container" style={{ textDecoration: 'none' }}>
+          <UserIcon />
+        </NavLink>
+
         <div className="navbar-cart">
           <div className="cart-container">
             <CartIcon />
             <span className="cart-badge">0</span>
           </div>
         </div>
+
         <div className="mobile-toggle" onClick={toggleMobileMenu}>
           {isMobileOpen ? <CloseIcon /> : <MenuIcon />}
         </div>
@@ -75,6 +90,8 @@ function Navbar() {
           <li><NavLink to="/contact" onClick={closeMenu} className="mobile-link">Contact Us</NavLink></li>
         </ul>
       </div>
+
+            
     </nav>
   );
 }
