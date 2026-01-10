@@ -23,7 +23,7 @@ const Support = () => {
 		  <div className="support-card">
 			<h3>DRIVERS & DOWNLOADS</h3>
 			<p>Get the latest BIOS updates and drivers for your system.</p>
-			<button className="support-btn">Download</button>
+			<a href="https://www.asus.com/my/support/download-center/"><button className="support-btn">Download</button></a>
 		  </div>
 		  <div className="support-card">
 			<h3>TRACK ORDER</h3>
