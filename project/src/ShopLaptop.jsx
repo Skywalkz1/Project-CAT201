@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
 import Footer from './Footer';
-import './shopLaptop.css';
+import './styling/shopLaptop.css';
 
 // Data matching your screenshot
 const laptops = [
   { 
     id: 1, 
-    name: "MSI Vector 16", 
+    name: "ASUS ROG Strix Scar 18", 
     spec: "QHD | 240Hz | RTX50", 
-    price: "RM 11,799.00", 
-    img: "https://via.placeholder.com/300x250?text=MSI+Vector" 
+    price: "RM24,299.00", 
+    img: "https://dlcdnwebimgs.asus.com/files/media/982b43f2-03f0-4780-b552-cf2a58d515bf/v1/images/Strix_G18_KV_16x9_N-p-2000.webp" 
   },
   { 
     id: 2, 
