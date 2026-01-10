@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.service-container {
+  background-color: #000000; /* Pitch black background */
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  padding: 80px 20px 100px; /* Reduced bottom padding slightly */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* --- Header --- */
+.service-header {
+  max-width: 700px;
+  margin-bottom: 70px;
+}
+
+.service-header h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.service-header p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #dddddd;
+}
+
+/* --- Grid Layout --- */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+  /* REMOVED fixed rows: grid-template-rows: repeat(2, auto); */
+  gap: 40px;
+  max-width: 1000px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+/* --- Individual Service Item --- */
+.service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* NEW: Special class to center the 13th item when expanded */
+.service-item-centered {
+  grid-column: 1 / -1; /* Span all columns */
+}
+
+
+.icon-box {
+  width: 70px;
+  height: 70px;
+  background-color: #0099ff; /* The bright blue */
+  border-radius: 18px; /* Smooth rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease;
+}
+
+.service-item:hover .icon-box {
+  transform: scale(1.1); /* Pop effect on hover */
+}
+
+.service-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #ffffff;
+}
+
+/* --- Footer Button (Changed from link to button styles) --- */
+.see-more-btn {
+  background: none;
+  border: none;
+  color: #888;
+  text-decoration: underline;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: color 0.2s;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.see-more-btn:hover {
+  color: #ffffff;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 900px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2x4 Grid on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .service-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 column on mobile */
+    gap: 30px;
+  }
+  
+  .service-header h2 {
+    font-size: 2.2rem;
+  }
+}
+
+/* --- Animation Wrapper --- */
+.expandable-wrapper {
+  width: 100%;
+  max-width: 1000px; /* Match grid max-width */
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+/* When expanded (controlled via inline style in JS, but opacity is here) */
+.expandable-wrapper[style*="height: 0px"] {
+  opacity: 0;
+}
+.expandable-wrapper:not([style*="height: 0px"]) {
+  opacity: 1;
+}
+
+.expandable-content {
+  padding-top: 40px; /* Add gap between the two grids inside the animation */
+  /* This prevents the "jump" - the padding is inside the hidden box */
+}
+
+/* Ensure grids align perfectly */
+.service-grid {
+  /* Ensure margin bottom is handled by the wrapper gap */
+  margin-bottom: 0; 
+}
+/* Add margin only to the first grid so it pushes the hidden one down initially */
+.service-grid:first-of-type {
+  margin-bottom: 0; 
+}
+
+/* Footer spacing needs to be separate now */
+.service-footer {
+  margin-top: 50px;
+  z-index: 10;
+}
+
+/* --- Centering Logic --- */
+.service-item-centered {
+  grid-column: 1 / -1; /* Spans full width */
+  margin-top: 20px;    /* Give it a little breathing room */
+}
+
+/* Re-verify Mobile Responsiveness */
+@media (max-width: 900px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .service-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+  }
+}

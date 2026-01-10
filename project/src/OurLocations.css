@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* OurLocations.css */
+.our-locations-container {
+    font-family: sans-serif;
+    color: white;
+    background-color: #1a1a1a;
+  }
+  
+.location-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 0px 370px;
+    justify-content: space-between;
+    background-color: black;
+    gap: 40px; /* Moves spacing here. Safe for mobile. */
+}
+
+.map-container {
+    flex: 1 1 500px;
+    margin-right: 0; /* Remove the margin */
+    margin-bottom: 0; /* Gap handles the bottom spacing too */
+    border-radius: 8px;
+    overflow: hidden;
+}
+  
+  .contact-info {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .contact-icon {
+    font-size: 24px;
+    color: white;
+    background-color: #ff3b3b; /* Red color */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+  
+  .contact-details h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+  }
+  
+  .contact-details p {
+    margin: 0;
+    line-height: 1.5;
+    color: #ccc;
+  }
+  
+  @media (max-width: 768px) {
+    .location-header h1 {
+      font-size: 2.5rem;
+    }
+    .location-content {
+      flex-direction: column;
+      padding: 20px;
+    }
+    .map-container {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
