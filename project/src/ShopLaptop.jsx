@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
 import Footer from './Footer';
-import './styling/shopLaptop.css';
+import './shopLaptop.css';
 
 // Data matching your screenshot
 const laptops = [
