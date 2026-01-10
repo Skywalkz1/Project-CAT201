@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Layout Components
 import Navbar from "./NavigationBar.jsx";
 import Footer from "./Footer.jsx";
-import ScrollToTop from "./ScrollToTop.jsx"; // Import the helper
+import ScrollToTop from "./ScrollToTop.jsx";
 
 // Page Components
 import Home from './Home';
@@ -13,18 +13,16 @@ import Customize from './Customize.jsx';
 import Contact from './Contact';
 import Shop from './Shop.jsx';
 import Support from './Support.jsx';
+import Login from './Login.jsx'; 
+import Signup from './Signup.jsx'; 
+import ForgotPassword from './ForgotPassword.jsx'; 
 
 function App() {
   return (
     <Router>
-      {/* This ensures every time you switch pages, the window scrolls to top */}
       <ScrollToTop />
-      
       <div className="app-container">
-        {/* Navigation Bar (Always Visible) */}
         <Navbar />
-
-        {/* Routes Switcher */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -32,9 +30,12 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/support" element={<Support />} />
           <Route path="/contact" element={<Contact />} />
+          
+          {/* Auth Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
-
-        {/* Footer (Always Visible) */}
         <Footer />
       </div>
     </Router>
