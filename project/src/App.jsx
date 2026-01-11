@@ -16,6 +16,8 @@ import Support from './Support.jsx';
 import Login from './Login.jsx'; 
 import Signup from './Signup.jsx'; 
 import ForgotPassword from './ForgotPassword.jsx'; 
+import AdminDashboard from './AdminDashboard.jsx';
+import Profile from './Profile.jsx';
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </div>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom'; // IMPORT THIS
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom'; // <--- IMPORT useLocation
 import './NavigationBar.css';
 
-// --- Icons (Keep your existing icons here) ---
+// --- Icons (Keep your existing icon components here) ---
 const CartIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M9 20C9 21.1046 8.10457 22 7 22C5.89543 22 5 21.1046 5 20C5 18.8954 5.89543 18 7 18C8.10457 18 9 18.8954 9 20Z" fill="white"/>
@@ -23,8 +23,6 @@ const CloseIcon = () => (
     <path d="M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
-
-// Add this new Icon component with the others
 const UserIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -34,12 +32,36 @@ const UserIcon = () => (
 
 function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false); // <--- New State
+  const location = useLocation(); // <--- Hook to detect page changes
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check for Admin Role whenever the URL changes
+  useEffect(() => {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      setIsLoggedIn(true); // User exists
+      try {
+        const user = JSON.parse(userStr);
+        // Case-insensitive check for 'admin'
+        if (user.role && user.role.toLowerCase() === 'admin') {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (e) {
+        setIsAdmin(false);
+      }
+    } else {
+      setIsLoggedIn(false); // No user
+      setIsAdmin(false);
+    }
+  }, [location]); // <--- Re-run this check every time location changes
 
   const toggleMobileMenu = () => {
     setIsMobileOpen(!isMobileOpen);
   };
 
-  // Helper to close menu when link is clicked
   const closeMenu = () => setIsMobileOpen(false);
 
   return (
@@ -56,6 +78,16 @@ function Navbar() {
         <li><NavLink to="/about" className="nav-item btn-link">About</NavLink></li>
         <li><NavLink to="/customize" className="nav-item btn-link">Customize Your Own</NavLink></li>
         <li><NavLink to="/shop" className="nav-item btn-link">Shop Now</NavLink></li>
+        
+        {/* --- CONDITIONALLY RENDER ADMIN LINK --- */}
+        {isAdmin && (
+           <li>
+             <NavLink to="/admin" className="nav-item btn-link" style={{ color: '#ef4444' }}>
+               Admin Dashboard
+             </NavLink>
+           </li>
+        )}
+
         <li><NavLink to="/support" className="nav-item btn-link">Support</NavLink></li>
         <li><NavLink to="/contact" className="nav-item btn-link">Contact Us</NavLink></li>
       </ul>
@@ -63,8 +95,11 @@ function Navbar() {
       {/* Actions: Cart & Hamburger */}
       <div className="navbar-actions">
         
-        {/* Add this Link wrapper around the new UserIcon */}
-        <NavLink to="/login" className="cart-container" style={{ textDecoration: 'none' }}>
+        <NavLink 
+          to={isLoggedIn ? "/profile" : "/login"} 
+          className="cart-container" 
+          style={{ textDecoration: 'none' }}
+        >
           <UserIcon />
         </NavLink>
 
@@ -85,13 +120,22 @@ function Navbar() {
         <ul className="mobile-nav-links">
           <li><NavLink to="/about" onClick={closeMenu} className="mobile-link">About</NavLink></li>
           <li><NavLink to="/customize" onClick={closeMenu} className="mobile-link">Customize Your Own</NavLink></li>
+          
+          {/* --- MOBILE ADMIN LINK --- */}
+          {isAdmin && (
+             <li>
+               <NavLink to="/admin" onClick={closeMenu} className="mobile-link" style={{ color: '#ef4444' }}>
+                 Admin Dashboard
+               </NavLink>
+             </li>
+          )}
+          
           <li><NavLink to="/shop" onClick={closeMenu} className="mobile-link">Shop Now</NavLink></li>
           <li><NavLink to="/support" onClick={closeMenu} className="mobile-link">Support</NavLink></li>
           <li><NavLink to="/contact" onClick={closeMenu} className="mobile-link">Contact Us</NavLink></li>
         </ul>
       </div>
 
-            
     </nav>
   );
 }
