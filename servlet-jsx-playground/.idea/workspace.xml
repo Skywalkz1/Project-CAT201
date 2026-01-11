@@ -9,11 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="104c0352-5004-4ecc-8be0-531a67ba0a7e" name="Changes" comment="Fix directory file">
-      <change beforePath="$PROJECT_DIR$/../project/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/src/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/NavigationBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="104c0352-5004-4ecc-8be0-531a67ba0a7e" name="Changes" comment="Fix directory file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
