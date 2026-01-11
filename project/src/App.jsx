@@ -25,6 +25,7 @@ import AdminSupportTickets from './AdminSupportTicket.jsx';
 import Cart from './Cart.jsx';
 import { CartProvider } from './CartContext.jsx';
 import Checkout from './Checkout.jsx';
+import AdminOrders from './AdminOrders';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path="/admin/tickets" element={<AdminSupportTickets />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/admin/orders" element={<AdminOrders />} />
           
         </Routes>
         <Footer />

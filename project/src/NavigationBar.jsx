@@ -106,6 +106,7 @@ function Navbar() {
                 <li><NavLink to="/admin/quotations" className="dropdown-link">Quotation History</NavLink></li>
                 
                 {/* --- NEW LINK HERE --- */}
+                <li><NavLink to="/admin/orders" className="dropdown-link">Check Orders</NavLink></li>
                 <li><NavLink to="/admin/tickets" className="dropdown-link">Support Tickets</NavLink></li>
                 
               </ul>

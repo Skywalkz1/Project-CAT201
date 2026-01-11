@@ -30,8 +30,9 @@ const Profile = () => {
   }, [navigate]);
 
   // 2. Fetch Quotation History
-  useEffect(() => {
+useEffect(() => {
     if (user && user.id) {
+      // 1. Fetch Quotations (Existing)
       setLoadingHistory(true);
       fetch(`http://localhost:8080/servlet_jsx_playground_war_exploded/api/quotation/history?userId=${user.id}`)
         .then(res => res.json())
@@ -39,14 +40,20 @@ const Profile = () => {
           setQuotations(data);
           setLoadingHistory(false);
         })
-        .catch(err => {
-          console.error("Failed to load history", err);
-          setLoadingHistory(false);
-        });
+        .catch(err => setLoadingHistory(false));
         
-      // NOTE: You can fetch purchase history here in the future when backend is ready
-      // setLoadingPurchases(true);
-      // fetch(...).then(...)
+      // 2. Fetch Purchases (NEW)
+      setLoadingPurchases(true);
+      fetch(`http://localhost:8080/servlet_jsx_playground_war_exploded/api/orders?userId=${user.id}`)
+        .then(res => res.json())
+        .then(data => {
+          setPurchases(data); // Store in state
+          setLoadingPurchases(false);
+        })
+        .catch(err => {
+            console.error(err);
+            setLoadingPurchases(false);
+        });
     }
   }, [user]);
 

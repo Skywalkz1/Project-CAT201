@@ -8,26 +8,61 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Calculate Total
   const grandTotal = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
+  const itemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0); // Calculate total items
 
-  const handlePayment = (e) => {
+  const handlePayment = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
 
-    // Simulate network delay (2 seconds)
-    setTimeout(() => {
-      setIsProcessing(false);
-      clearCart(); // Empty the cart
-      alert("Payment Successful! Thank you for your order.");
-      navigate('/'); // Redirect to Home
-    }, 2000);
+    // Get User ID from LocalStorage
+    const userStr = localStorage.getItem('user');
+    const user = userStr ? JSON.parse(userStr) : null;
+
+    if (!user) {
+        alert("Please login to complete purchase");
+        navigate('/login');
+        return;
+    }
+
+    // 1. Prepare Data
+    const orderData = {
+        userId: user.id,
+        total: grandTotal,
+        itemCount: itemCount
+    };
+
+    try {
+        // 2. Send to Backend
+        // REPLACE 'your-war-name' with actual project name
+        const response = await fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        });
+
+        if (response.ok) {
+             // 3. Success Flow
+             clearCart(); 
+             alert("Payment Successful! Order saved.");
+             navigate('/profile'); // Redirect to profile to see history
+        } else {
+             alert("Payment failed on server.");
+        }
+
+    } catch (error) {
+        console.error("Payment error:", error);
+        alert("Network error.");
+    } finally {
+        setIsProcessing(false);
+    }
   };
 
   if (cartItems.length === 0) {
     return <div className="checkout-empty">Your cart is empty. Redirecting...</div>;
   }
 
+  // ... (Return JSX remains exactly the same as your file) ...
   return (
     <div className="checkout-page">
       <div className="checkout-container">
@@ -36,16 +71,15 @@ const Checkout = () => {
         <div className="payment-section">
           <h2>Payment Details</h2>
           <form onSubmit={handlePayment}>
+             {/* ... Inputs remain the same ... */}
             <div className="form-group">
               <label>Cardholder Name</label>
               <input type="text" placeholder="John Doe" required />
             </div>
-            
             <div className="form-group">
               <label>Card Number</label>
               <input type="text" placeholder="0000 0000 0000 0000" maxLength="19" required />
             </div>
-
             <div className="row">
               <div className="form-group half">
                 <label>Expiry Date</label>
