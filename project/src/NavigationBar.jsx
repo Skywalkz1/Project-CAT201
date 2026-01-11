@@ -153,6 +153,7 @@ function Navbar() {
                <li><NavLink to="/admin/products" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Manage Products</NavLink></li>
                <li><NavLink to="/admin/quotations" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Quotation History</NavLink></li>
                <li><NavLink to="/admin/tickets" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Support Tickets</NavLink></li>
+               <li><NavLink to="/admin/orders" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Check Orders</NavLink></li>
              </>
           )}
           
