@@ -87,9 +87,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-container">
-      <h1 className="admin-title">Manage Products</h1>
-      
-      
+      <h1 className="admin-title">Manage Products</h1>      
       <div className="admin-form-container">
         <h3 className="form-title">{isEditing ? "Edit Product" : "Add New Product"}</h3>
         <form onSubmit={handleSubmit} className="admin-form">
