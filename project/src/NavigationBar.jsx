@@ -89,22 +89,26 @@ function Navbar() {
         
         {/* --- CONDITIONALLY RENDER ADMIN LINK --- */}
         {isAdmin && (
-           <li 
-             className="nav-item-dropdown"
-             onMouseEnter={() => setShowAdminMenu(true)}
-             onMouseLeave={() => setShowAdminMenu(false)}
-           >
-             <span className="nav-item btn-link admin-trigger">
-               Admin Panel <ChevronDownIcon />
-             </span>
-             
-             {showAdminMenu && (
-               <ul className="dropdown-menu">
-                 <li><NavLink to="/admin/products" className="dropdown-link">Manage Products</NavLink></li>
-                 <li><NavLink to="/admin/quotations" className="dropdown-link">Quotation History</NavLink></li>
-               </ul>
-             )}
-           </li>
+          <li 
+            className="nav-item-dropdown"
+            onMouseEnter={() => setShowAdminMenu(true)}
+            onMouseLeave={() => setShowAdminMenu(false)}
+          >
+            <span className="nav-item btn-link admin-trigger">
+              Admin Panel <ChevronDownIcon />
+            </span>
+            
+            {showAdminMenu && (
+              <ul className="dropdown-menu">
+                <li><NavLink to="/admin/products" className="dropdown-link">Manage Products</NavLink></li>
+                <li><NavLink to="/admin/quotations" className="dropdown-link">Quotation History</NavLink></li>
+                
+                {/* --- NEW LINK HERE --- */}
+                <li><NavLink to="/admin/tickets" className="dropdown-link">Support Tickets</NavLink></li>
+                
+              </ul>
+            )}
+          </li>
         )}
 
         <li><NavLink to="/support" className="nav-item btn-link">Support</NavLink></li>
@@ -145,6 +149,7 @@ function Navbar() {
              <>
                <li><NavLink to="/admin/products" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Manage Products</NavLink></li>
                <li><NavLink to="/admin/quotations" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Quotation History</NavLink></li>
+               <li><NavLink to="/admin/tickets" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Support Tickets</NavLink></li>
              </>
           )}
           
