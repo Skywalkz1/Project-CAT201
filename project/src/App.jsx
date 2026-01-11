@@ -21,6 +21,7 @@ import AdminDashboard from './AdminDashboard.jsx';
 import AdminQuotationHistory from './AdminQuotationHistory.jsx';
 import Profile from './Profile.jsx';
 import Quotation from './Quotation.jsx';
+import AdminSupportTickets from './AdminSupportTicket.jsx';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/quotation" element={<Quotation />} />
           <Route path="/admin/products" element={<AdminDashboard />} />
           <Route path="/admin/quotations" element={<AdminQuotationHistory />} />
+          <Route path="/admin/tickets" element={<AdminSupportTickets />} />
         </Routes>
         <Footer />
       </div>
