@@ -30,11 +30,19 @@ const UserIcon = () => (
   </svg>
 );
 
+// NEW: Chevron Icon
+const ChevronDownIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M6 9l6 6 6-6"/>
+  </svg>
+);
+
 function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false); // <--- New State
   const location = useLocation(); // <--- Hook to detect page changes
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showAdminMenu, setShowAdminMenu] = useState(false);
 
   // Check for Admin Role whenever the URL changes
   useEffect(() => {
@@ -81,10 +89,21 @@ function Navbar() {
         
         {/* --- CONDITIONALLY RENDER ADMIN LINK --- */}
         {isAdmin && (
-           <li>
-             <NavLink to="/admin" className="nav-item btn-link" style={{ color: '#ef4444' }}>
-               Admin Dashboard
-             </NavLink>
+           <li 
+             className="nav-item-dropdown"
+             onMouseEnter={() => setShowAdminMenu(true)}
+             onMouseLeave={() => setShowAdminMenu(false)}
+           >
+             <span className="nav-item btn-link admin-trigger">
+               Admin Panel <ChevronDownIcon />
+             </span>
+             
+             {showAdminMenu && (
+               <ul className="dropdown-menu">
+                 <li><NavLink to="/admin/products" className="dropdown-link">Manage Products</NavLink></li>
+                 <li><NavLink to="/admin/quotations" className="dropdown-link">Quotation History</NavLink></li>
+               </ul>
+             )}
            </li>
         )}
 
@@ -123,11 +142,10 @@ function Navbar() {
           
           {/* --- MOBILE ADMIN LINK --- */}
           {isAdmin && (
-             <li>
-               <NavLink to="/admin" onClick={closeMenu} className="mobile-link" style={{ color: '#ef4444' }}>
-                 Admin Dashboard
-               </NavLink>
-             </li>
+             <>
+               <li><NavLink to="/admin/products" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Manage Products</NavLink></li>
+               <li><NavLink to="/admin/quotations" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Quotation History</NavLink></li>
+             </>
           )}
           
           <li><NavLink to="/shop" onClick={closeMenu} className="mobile-link">Shop Now</NavLink></li>

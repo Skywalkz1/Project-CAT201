@@ -17,6 +17,7 @@ import Login from './Login.jsx';
 import Signup from './Signup.jsx'; 
 import ForgotPassword from './ForgotPassword.jsx'; 
 import AdminDashboard from './AdminDashboard.jsx';
+import AdminQuotationHistory from './AdminQuotationHistory.jsx';
 import Profile from './Profile.jsx';
 import Quotation from './Quotation.jsx';
 
@@ -38,9 +39,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/quotation" element={<Quotation />} />
+          <Route path="/admin/products" element={<AdminDashboard />} />
+          <Route path="/admin/quotations" element={<AdminQuotationHistory />} />
         </Routes>
         <Footer />
       </div>
