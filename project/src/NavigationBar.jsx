@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'; // <--- IMPORT useLocation
 import './NavigationBar.css';
+import { useCart } from './CartContext'; // <--- 1. Import Context
 
 // --- Icons (Keep your existing icon components here) ---
 const CartIcon = () => (
@@ -43,6 +44,7 @@ function Navbar() {
   const location = useLocation(); // <--- Hook to detect page changes
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showAdminMenu, setShowAdminMenu] = useState(false);
+  const { cartCount } = useCart(); // <--- 2. Get count from Context
 
   // Check for Admin Role whenever the URL changes
   useEffect(() => {
@@ -104,6 +106,7 @@ function Navbar() {
                 <li><NavLink to="/admin/quotations" className="dropdown-link">Quotation History</NavLink></li>
                 
                 {/* --- NEW LINK HERE --- */}
+                <li><NavLink to="/admin/orders" className="dropdown-link">Check Orders</NavLink></li>
                 <li><NavLink to="/admin/tickets" className="dropdown-link">Support Tickets</NavLink></li>
                 
               </ul>
@@ -126,13 +129,13 @@ function Navbar() {
           <UserIcon />
         </NavLink>
 
-        <div className="navbar-cart">
+        {/* WRAPPER CHANGED TO NavLink */}
+        <NavLink to="/cart" className="navbar-cart" style={{ textDecoration: 'none' }}>
           <div className="cart-container">
             <CartIcon />
-            <span className="cart-badge">0</span>
+            <span className="cart-badge">{cartCount}</span>
           </div>
-        </div>
-
+        </NavLink>
         <div className="mobile-toggle" onClick={toggleMobileMenu}>
           {isMobileOpen ? <CloseIcon /> : <MenuIcon />}
         </div>
@@ -150,6 +153,7 @@ function Navbar() {
                <li><NavLink to="/admin/products" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Manage Products</NavLink></li>
                <li><NavLink to="/admin/quotations" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Quotation History</NavLink></li>
                <li><NavLink to="/admin/tickets" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Support Tickets</NavLink></li>
+               <li><NavLink to="/admin/orders" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Check Orders</NavLink></li>
              </>
           )}
           

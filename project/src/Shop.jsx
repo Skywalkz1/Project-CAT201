@@ -1,25 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { laptops } from './productsData'; // <--- Import the shared data
 import './Shop.css';
 
 const Shop = () => {
   const navigate = useNavigate();
+  
+  // 1. State to hold backend data
+  const [laptops, setLaptops] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // 2. Fetch data from Java Servlet
+  useEffect(() => {
+    // REPLACE 'your-war-name' with your actual project name from IntelliJ
+    fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/products')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setLaptops(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching laptops:", err);
+        setError("Failed to load products. Is the Java backend running?");
+        setLoading(false);
+      });
+  }, []);
 
   const handleViewDetails = (id) => {
     navigate(`/product/${id}`);
   };
 
+  if (loading) return <div className="shop-loading" style={{color:'white', padding:'20px'}}>Loading Laptops...</div>;
+  if (error) return <div className="shop-error" style={{color:'red', padding:'20px'}}>{error}</div>;
+
   return (
 	  <div className="shop-page-container">
 		
-		{/* Header Section */}
 		<div className="shop-header">
 		  <h1 className="shop-title">Laptops <span className="highlight">Collection</span></h1>
 		  <p className="shop-subtitle">High Performance Machines for Gaming & Work</p>
 		</div>
 
-		{/* The Grid of Laptops */}
 		<div className="products-grid">
 		  {laptops.map((laptop) => (
 			<div key={laptop.id} className="product-card">
@@ -29,6 +55,7 @@ const Shop = () => {
 			  </div>
 
 			  <div className="image-container">
+				{/* Uses the 'img' field from your Java Laptop class */}
 				<img src={laptop.img} alt={laptop.name} />
 			  </div>
 
@@ -36,7 +63,6 @@ const Shop = () => {
 				<h3 className="product-name">{laptop.name}</h3>
 				<p className="product-price">RM {laptop.basePrice.toLocaleString()}.00</p>
 				
-                {/* Updated Button to use onClick */}
 				<button 
                   className="buy-btn" 
                   onClick={() => handleViewDetails(laptop.id)}
