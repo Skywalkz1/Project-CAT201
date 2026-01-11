@@ -1,55 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
-import Footer from './Footer';
+import { useNavigate } from 'react-router-dom'; 
+import { laptops } from './productsData'; // <--- Import the shared data
 import './Shop.css';
 
-// Data matching your screenshot
-const laptops = [
-  { 
-	id: 1, 
-	name: "MSI Vector 16", 
-	spec: "QHD | 240Hz | RTX50", 
-	price: "RM 11,799.00", 
-	img: "https://via.placeholder.com/300x250?text=MSI+Vector" 
-  },
-  { 
-	id: 2, 
-	name: "MSI Stealth Studio", 
-	spec: "QHD | 240Hz | RTX50", 
-	price: "RM 11,499.00", 
-	img: "https://via.placeholder.com/300x250?text=MSI+Stealth" 
-  },
-  { 
-	id: 3, 
-	name: "MSI Katana 15", 
-	spec: "QHD | 165Hz | RTX50", 
-	price: "RM 5,699.00", 
-	img: "https://via.placeholder.com/300x250?text=MSI+Katana" 
-  },
-  { 
-	id: 4, 
-	name: "MSI Cyborg 15", 
-	spec: "FHD | 144Hz | NVIDIA", 
-	price: "RM 3,999.00", 
-	img: "https://via.placeholder.com/300x250?text=MSI+Cyborg" 
-  },
-  { 
-	id: 5, 
-	name: "MSI Thin 15", 
-	spec: "FHD | 144Hz | NVIDIA", 
-	price: "RM 4,099.00", 
-	img: "https://via.placeholder.com/300x250?text=MSI+Thin" 
-  },
-  { 
-	id: 6, 
-	name: "MSI Venture", 
-	spec: "COPILOT | 2K Display", 
-	price: "RM 3,899.00", 
-	img: "https://via.placeholder.com/300x250?text=MSI+Venture" 
-  }
-];
-
 const Shop = () => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
 	  <div className="shop-page-container">
 		
@@ -74,9 +34,15 @@ const Shop = () => {
 
 			  <div className="product-info">
 				<h3 className="product-name">{laptop.name}</h3>
-				<p className="product-price">{laptop.price}</p>
+				<p className="product-price">RM {laptop.basePrice.toLocaleString()}.00</p>
 				
-				<button className="buy-btn">View Details</button>
+                {/* Updated Button to use onClick */}
+				<button 
+                  className="buy-btn" 
+                  onClick={() => handleViewDetails(laptop.id)}
+                >
+                  View Details
+                </button>
 			  </div>
 			</div>
 		  ))}
