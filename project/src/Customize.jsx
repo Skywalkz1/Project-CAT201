@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Customize.css';
 
-// Remove the hardcoded const PC_DATA = [...] completely.
-
 function Customize() {
+  const navigate = useNavigate(); // Initialize the hook
   const [pcData, setPcData] = useState([]); // State to hold DB data
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
@@ -61,7 +61,7 @@ function Customize() {
   };
 
   // Helper to find product inside the DYNAMIC pcData
-  const findProductById = (productId) => {
+	const findProductById = (productId) => {
     for (const cat of pcData) {
       const found = cat.products.find(p => p.id === productId);
       if (found) return found;
@@ -73,6 +73,43 @@ function Customize() {
     const product = findProductById(productId);
     return total + (product ? product.price * qty : 0);
   }, 0);
+
+  const handleNext = () => {
+    const selectedProducts = [];
+
+// 1. Iterate through all items in the cart
+    for (const [productId, qty] of Object.entries(cartItems)) {
+      const product = findProductById(productId);
+      
+      if (product && qty > 0) {
+        // Find category name for context
+        let categoryName = '';
+        for (const cat of pcData) {
+          if (cat.products.find(p => p.id === productId)) {
+            categoryName = cat.name.replace(/^--\s*|\s*--$/g, ''); // Clean up category name
+            break;
+          }
+        }
+
+        // Add full details to the list
+        selectedProducts.push({
+          ...product,
+          quantity: qty,
+          total: product.price * qty,
+          categoryName: categoryName
+        });
+      }
+    }
+
+// 2. Check if cart is empty
+    if (selectedProducts.length === 0) {
+      alert("Please select at least one item before proceeding.");
+      return;
+    }
+
+// 3. Navigate to the Quotation page and pass the data
+    navigate('/quotation', { state: { selectedProducts, grandTotal } });
+  };
 
   // --- LOADING STATE ---
   if (loading) return <div className="builder-container" style={{color:'white', textAlign:'center', marginTop:'50px'}}>Loading PC Parts...</div>;
@@ -87,7 +124,7 @@ function Customize() {
           <span>Total Price:</span>
           <span className="grand-total-price">RM {grandTotal}</span>
         </div>
-        <button className="next-btn">Next</button>
+        <button className="next-btn" onClick={handleNext}>Next</button>
       </div>
 
       <div className="grid-header">
