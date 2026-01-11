@@ -87,7 +87,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-container">
-      <h1 className="admin-title">Admin Dashboard</h1>
+      <h1 className="admin-title">Manage Products</h1>
       
       {/* --- FORM SECTION --- */}
       <div className="admin-form-container">
