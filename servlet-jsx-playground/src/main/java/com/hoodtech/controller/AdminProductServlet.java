@@ -2,7 +2,7 @@ package com.hoodtech.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.hoodtech.model.Product; // Ensure you have this model
+import com.hoodtech.model.Product; 
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@ public class AdminProductServlet extends HttpServlet {
     private static final String USER = "system";
     private static final String PASS = "1234";
 
-    // --- HELPER: Setup CORS and JSON headers ---
+   
     private void setupResponse(HttpServletResponse resp) {
         resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
         resp.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -30,14 +30,14 @@ public class AdminProductServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
     }
 
-    // --- HELPER: Read JSON Body ---
+    
     private JsonObject readBody(HttpServletRequest req) throws IOException {
         Gson gson = new Gson();
         BufferedReader reader = req.getReader();
         return gson.fromJson(reader, JsonObject.class);
     }
 
-    // 1. POST: Add New Product
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupResponse(resp);
@@ -60,7 +60,7 @@ public class AdminProductServlet extends HttpServlet {
         }
     }
 
-    // 2. PUT: Update Existing Product
+    
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupResponse(resp);
@@ -83,11 +83,11 @@ public class AdminProductServlet extends HttpServlet {
         }
     }
 
-    // 3. DELETE: Remove Product
+    
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupResponse(resp);
-        // We expect the ID to be passed as a query param: /api/admin/products?id=i5_13400
+        
         String prodId = req.getParameter("id");
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
@@ -103,7 +103,7 @@ public class AdminProductServlet extends HttpServlet {
         }
     }
 
-    // Handle CORS Pre-flight
+    
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupResponse(resp);

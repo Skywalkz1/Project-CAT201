@@ -17,7 +17,7 @@ import java.sql.*;
 @WebServlet("/api/login")
 public class LoginServlet extends HttpServlet {
 
-    // DB Credentials (Same as before)
+    
     private static final String URL = "jdbc:oracle:thin:@//localhost:1521/xe";
     private static final String USER = "system";
     private static final String PASS = "1234";
@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // 1. Setup CORS & Headers
+        
         resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
         resp.setHeader("Access-Control-Allow-Methods", "POST");
         resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -36,14 +36,14 @@ public class LoginServlet extends HttpServlet {
         Gson gson = new Gson();
 
         try {
-            // 2. Read JSON Body from React
+            
             BufferedReader reader = req.getReader();
             JsonObject incomingData = gson.fromJson(reader, JsonObject.class);
 
             String email = incomingData.get("email").getAsString();
             String password = incomingData.get("password").getAsString();
 
-            // 3. Check Database
+            
             Class.forName("oracle.jdbc.driver.OracleDriver");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 
@@ -55,21 +55,21 @@ public class LoginServlet extends HttpServlet {
                 ResultSet rs = stmt.executeQuery();
 
                 if (rs.next()) {
-                    // --- SUCCESS: User found ---
+                    
                     User user = new User(
                             rs.getInt("user_id"),
                             rs.getString("full_name"),
                             email,
-                            rs.getString("role") // <--- FETCH ROLE FROM DB
+                            rs.getString("role") 
                     );
 
-                    // Return User object + Success message
+                    
                     String jsonResponse = gson.toJson(user);
                     out.print(jsonResponse);
 
                 } else {
-                    // --- FAILURE: Invalid credentials ---
-                    resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401 Error
+                    
+                    resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED); 
                     out.print("{\"error\": \"Invalid email or password\"}");
                 }
             }
@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
         out.flush();
     }
 
-    // Handle "Pre-flight" requests from browser (CORS requirement)
+    
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");

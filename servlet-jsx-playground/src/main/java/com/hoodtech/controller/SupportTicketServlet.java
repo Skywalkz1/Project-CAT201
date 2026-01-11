@@ -23,7 +23,7 @@ public class SupportTicketServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Setup Headers
+        
         resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
         resp.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
         resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -31,18 +31,18 @@ public class SupportTicketServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         try {
-            // 1. Read JSON Data
+            
             Gson gson = new Gson();
             BufferedReader reader = req.getReader();
             JsonObject data = gson.fromJson(reader, JsonObject.class);
 
             String name = data.get("name").getAsString();
             String email = data.get("email").getAsString();
-            // Handle optional Order ID safely
+            
             String orderId = data.has("orderId") ? data.get("orderId").getAsString() : "";
             String message = data.get("message").getAsString();
 
-            // 2. Insert into Database
+            
             Class.forName("oracle.jdbc.driver.OracleDriver");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
                 String sql = "INSERT INTO support_tickets (name, email, order_id, message) VALUES (?, ?, ?, ?)";

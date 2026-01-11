@@ -26,7 +26,7 @@ public class SaveQuotationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Setup Headers
+        
         resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
         resp.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
         resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -35,7 +35,7 @@ public class SaveQuotationServlet extends HttpServlet {
         Connection conn = null;
 
         try {
-            // 1. Read JSON
+            
             Gson gson = new Gson();
             BufferedReader reader = req.getReader();
             JsonObject data = gson.fromJson(reader, JsonObject.class);
@@ -45,12 +45,12 @@ public class SaveQuotationServlet extends HttpServlet {
             double grandTotal = data.get("grandTotal").getAsDouble();
             JsonArray items = data.getAsJsonArray("items");
 
-            // 2. Database Transaction
+            
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection(URL, USER, PASS);
-            conn.setAutoCommit(false); // Start Transaction
+            conn.setAutoCommit(false); 
 
-            // A. Insert Header
+            
             String sqlHeader = "INSERT INTO quotations (quote_id, user_id, total_amount) VALUES (?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(sqlHeader)) {
                 stmt.setString(1, quoteId);
@@ -59,7 +59,7 @@ public class SaveQuotationServlet extends HttpServlet {
                 stmt.executeUpdate();
             }
 
-            // B. Insert Items
+            
             String sqlItem = "INSERT INTO quotation_items (quote_id, prod_id, product_name, quantity, unit_price, line_total) VALUES (?, ?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(sqlItem)) {
                 for (JsonElement itemElem : items) {
@@ -70,18 +70,18 @@ public class SaveQuotationServlet extends HttpServlet {
                     stmt.setInt(4, item.get("quantity").getAsInt());
                     stmt.setDouble(5, item.get("price").getAsDouble());
                     stmt.setDouble(6, item.get("total").getAsDouble());
-                    stmt.addBatch(); // Group inserts for performance
+                    stmt.addBatch(); 
                 }
                 stmt.executeBatch();
             }
 
-            conn.commit(); // Save changes
+            conn.commit(); 
             resp.getWriter().write("{\"message\": \"Quotation saved successfully\"}");
 
         } catch (Exception e) {
             e.printStackTrace();
             if (conn != null) {
-                try { conn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); } // Undo if error
+                try { conn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); } 
             }
             resp.setStatus(500);
             resp.getWriter().write("{\"error\": \"" + e.getMessage() + "\"}");

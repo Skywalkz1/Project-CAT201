@@ -4,7 +4,7 @@ public class Order {
     private String orderId;
     private int userId;
     private double total;
-    private String date; // We will format this as string for frontend
+    private String date; 
     private String status;
     private int itemCount;
 
@@ -16,5 +16,5 @@ public class Order {
         this.status = status;
         this.itemCount = itemCount;
     }
-    // Getters for Gson
+    
 }

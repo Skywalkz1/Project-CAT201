@@ -16,14 +16,14 @@ import java.sql.PreparedStatement;
 @WebServlet("/api/profile/update")
 public class UpdateProfileServlet extends HttpServlet {
 
-    // DB Credentials
+    
     private static final String URL = "jdbc:oracle:thin:@//localhost:1521/xe";
     private static final String USER = "system";
     private static final String PASS = "1234";
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 1. Setup Headers (CORS & JSON)
+        
         resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
         resp.setHeader("Access-Control-Allow-Methods", "PUT, OPTIONS");
         resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -31,7 +31,7 @@ public class UpdateProfileServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         try {
-            // 2. Read JSON Body
+            
             Gson gson = new Gson();
             BufferedReader reader = req.getReader();
             JsonObject data = gson.fromJson(reader, JsonObject.class);
@@ -39,7 +39,7 @@ public class UpdateProfileServlet extends HttpServlet {
             int userId = data.get("id").getAsInt();
             String newName = data.get("fullName").getAsString();
 
-            // 3. Update Database
+            
             Class.forName("oracle.jdbc.driver.OracleDriver");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
                 String sql = "UPDATE users SET full_name = ? WHERE user_id = ?";
@@ -63,7 +63,7 @@ public class UpdateProfileServlet extends HttpServlet {
         }
     }
 
-    // Handle Pre-flight requests
+    
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");

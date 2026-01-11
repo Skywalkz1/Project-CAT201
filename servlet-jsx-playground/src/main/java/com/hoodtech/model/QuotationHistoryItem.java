@@ -10,5 +10,5 @@ public class QuotationHistoryItem {
         this.date = date;
         this.total = total;
     }
-    // Getters are strictly required for Gson
+    
 }
