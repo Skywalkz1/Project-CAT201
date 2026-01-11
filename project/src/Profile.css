@@ -154,3 +154,57 @@
     justify-content: space-between;
   }
 }
+
+/* ... (Keep all your existing CSS) ... */
+
+/* --- History Section --- */
+.history-section {
+  margin-top: 50px;
+  border-top: 1px solid #334155;
+  padding-top: 30px;
+}
+
+.history-section h3 {
+  color: #38bdf8;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.history-table-container {
+  overflow-x: auto; /* Scrollable on mobile */
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.history-table th {
+  text-align: left;
+  padding: 12px;
+  background-color: #1e293b;
+  color: #94a3b8;
+  font-weight: 600;
+  border-bottom: 2px solid #334155;
+}
+
+.history-table td {
+  padding: 12px;
+  border-bottom: 1px solid #1e293b;
+  color: #e2e8f0;
+}
+
+.quote-id-cell {
+  font-family: monospace; /* Monospace for IDs looks cool */
+  color: #38bdf8;
+}
+
+.status-badge {
+  background-color: rgba(16, 185, 129, 0.2); /* Green tint */
+  color: #34d399; /* Green text */
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}

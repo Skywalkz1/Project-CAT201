@@ -18,6 +18,7 @@ import Signup from './Signup.jsx';
 import ForgotPassword from './ForgotPassword.jsx'; 
 import AdminDashboard from './AdminDashboard.jsx';
 import Profile from './Profile.jsx';
+import Quotation from './Quotation.jsx';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/quotation" element={<Quotation />} />
         </Routes>
         <Footer />
       </div>
