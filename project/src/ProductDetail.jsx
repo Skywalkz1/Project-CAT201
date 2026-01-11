@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { laptops } from './productsData';
+import { laptops } from './productsData'; //
 import './ProductDetail.css';
+import { useCart } from './CartContext'; // <--- 1. Import Context
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart(); // <--- 2. Get function from context
   const [product, setProduct] = useState(null);
 
   // Upgrade Options Data
@@ -36,23 +38,24 @@ const ProductDetail = () => {
 
   if (!product) return <div className="detail-loading">Loading...</div>;
 
-  const totalPrice = (product.basePrice + selectedRam.price + selectedSSD.price) * quantity;
+  const unitPrice = product.basePrice + selectedRam.price + selectedSSD.price; 
+  const totalPrice = unitPrice * quantity; //
 
   const handleAddToCart = () => {
-    // Basic cart logic - you can expand this to Context or Redux later
     const cartItem = {
       id: product.id,
       name: product.name,
-      img: product.img,
-      ram: selectedRam.name,
-      ssd: selectedSSD.name,
-      quantity: quantity,
-      totalPrice: totalPrice
+      img: product.img, //
+      ram: selectedRam.name, //
+      ssd: selectedSSD.name, //
+      quantity: quantity, //
+      totalPrice: totalPrice, //
+      unitPrice: unitPrice // Useful for logic later
     };
 
-    alert(`Added to Cart:\n${product.name}\n${selectedRam.name}\n${selectedSSD.name}\nTotal: RM ${totalPrice}`);
-    console.log("Cart Item:", cartItem);
-  };
+    addToCart(cartItem); // <--- 3. Send to Context
+      
+      };
 
   return (
     <div className="detail-page">

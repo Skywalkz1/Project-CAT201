@@ -22,9 +22,13 @@ import AdminQuotationHistory from './AdminQuotationHistory.jsx';
 import Profile from './Profile.jsx';
 import Quotation from './Quotation.jsx';
 import AdminSupportTickets from './AdminSupportTicket.jsx';
+import Cart from './Cart.jsx';
+import { CartProvider } from './CartContext.jsx';
+import Checkout from './Checkout.jsx';
 
 function App() {
   return (
+    <CartProvider>
     <Router>
       <ScrollToTop />
       <div className="app-container">
@@ -47,10 +51,14 @@ function App() {
           <Route path="/admin/products" element={<AdminDashboard />} />
           <Route path="/admin/quotations" element={<AdminQuotationHistory />} />
           <Route path="/admin/tickets" element={<AdminSupportTickets />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          
         </Routes>
         <Footer />
       </div>
     </Router>
+    </CartProvider>
   );
 }
 
