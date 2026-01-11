@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AdminDashboard.css'; // Re-using existing admin styles
+import './AdminDashboard.css'; 
 
 const AdminSupportTickets = () => {
   const navigate = useNavigate();
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 1. Security Check & Fetch Data
+  
   useEffect(() => {
     const userStr = localStorage.getItem('user');
     if (!userStr) {
@@ -35,7 +35,7 @@ const AdminSupportTickets = () => {
     }
   };
 
-  // 2. Handle Status Update
+  
   const handleStatusChange = async (id, newStatus) => {
     try {
       await fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/admin/tickets', {
@@ -43,19 +43,19 @@ const AdminSupportTickets = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, status: newStatus })
       });
-      // Refresh list locally
+      
       setTickets(prev => prev.map(t => t.id === id ? { ...t, status: newStatus } : t));
     } catch (err) {
       alert("Failed to update status");
     }
   };
 
-  // Helper for Status Color
+  
   const getStatusStyle = (status) => {
     switch (status) {
-      case 'Open': return { color: '#ef4444', fontWeight: 'bold' }; // Red
-      case 'In Progress': return { color: '#f59e0b', fontWeight: 'bold' }; // Orange
-      case 'Closed': return { color: '#10b981', fontWeight: 'bold' }; // Green
+      case 'Open': return { color: '#ef4444', fontWeight: 'bold' }; 
+      case 'In Progress': return { color: '#f59e0b', fontWeight: 'bold' }; 
+      case 'Closed': return { color: '#10b981', fontWeight: 'bold' }; 
       default: return { color: 'white' };
     }
   };

@@ -2,7 +2,7 @@ import React from 'react';
 import './ExperienceSection.css';
 
 const ExperienceSection = () => {
-  // Data for the statistic cards
+  
   const stats = [
     {
       value: "2019",

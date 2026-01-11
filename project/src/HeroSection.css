@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 .hero-container {
-  background-color: #080808; /* Very dark background */
+  background-color: #080808; 
   color: #ffffff;
   font-family: 'Inter', sans-serif;
   width: 100%;
@@ -22,7 +22,7 @@
   gap: 40px;
 }
 
-/* --- Text Section Styling --- */
+
 .text-content {
   flex: 1;
   max-width: 600px;
@@ -38,13 +38,13 @@ h1 {
 
 .subtitle {
   font-size: 1.1rem;
-  color: #cccccc; /* Light grey for subtext */
+  color: #cccccc; 
   line-height: 1.5;
   margin-bottom: 35px;
   max-width: 90%;
 }
 
-/* --- Buttons --- */
+
 .cta-group {
   display: flex;
   gap: 20px;
@@ -67,11 +67,11 @@ h1 {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 153, 255, 0.3); /* Initial subtle glow */
+  box-shadow: 0 0 10px rgba(0, 153, 255, 0.3); 
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 25px rgba(0, 153, 255, 0.6); /* Intense glow on hover */
+  box-shadow: 0 0 25px rgba(0, 153, 255, 0.6); 
   transform: translateY(-2px);
 }
 
@@ -85,7 +85,7 @@ h1 {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* --- Reviews --- */
+
 .reviews {
   display: flex;
   flex-direction: column;
@@ -93,7 +93,7 @@ h1 {
 }
 
 .stars {
-  color: #ffcc00; /* Yellow stars */
+  color: #ffcc00; 
   font-size: 1.5rem;
 }
 
@@ -109,33 +109,33 @@ h1 {
   color: #cccccc;
 }
 
-/* --- Image Section Styling --- */
+
 .image-content {
   flex: 1;
   position: relative;
-  height: 500px; /* Adjust based on image aspect ratio */
+  height: 500px; 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* This handles the layering logic */
+
 .pc-image {
   position: absolute;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
 
-/* The white/smaller PC in the front */
+
 .pc-front {
   left: 0; 
   z-index: 2;
   height: 85%;
-  /* Push it slightly forward and left */
+  
   transform: translateX(-20px); 
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 960px) {
   .content-wrapper {
     flex-direction: column;

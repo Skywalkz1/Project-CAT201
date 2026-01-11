@@ -1,7 +1,7 @@
 import React from 'react';
 import './HeroSection.css';
 import imagepc from './assets/pc.png'
-import { Link } from 'react-router-dom'; // Add this import at the top
+import { Link } from 'react-router-dom'; 
 
 
 
@@ -9,7 +9,7 @@ const HeroSection = () => {
   return (
     <section className="hero-container">
       <div className="content-wrapper">
-        {/* Left Side: Text Content */}
+        
         <div className="text-content">
           <h1>
             Custom-Built PCs,<br />
@@ -28,7 +28,7 @@ const HeroSection = () => {
 
           <div className="reviews">
             <div className="stars">
-              {/* Rendering 5 stars */}
+              
               {[...Array(5)].map((_, i) => (
                 <span key={i} className="star">★</span>
               ))}
@@ -39,7 +39,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right Side: Images */}
+        
         <div className="image-content">
           <img 
             src={imagepc} 

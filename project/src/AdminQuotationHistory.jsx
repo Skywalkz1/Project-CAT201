@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AdminDashboard.css'; // Re-use existing admin styles
+import './AdminDashboard.css'; 
 
 const AdminQuotationHistory = () => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ const AdminQuotationHistory = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 1. Security Check
+    
     const userStr = localStorage.getItem('user');
     if (!userStr) {
       navigate('/login');

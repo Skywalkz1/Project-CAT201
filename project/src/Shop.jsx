@@ -5,14 +5,14 @@ import './Shop.css';
 const Shop = () => {
   const navigate = useNavigate();
   
-  // 1. State to hold backend data
+  
   const [laptops, setLaptops] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 2. Fetch data from Java Servlet
+  
   useEffect(() => {
-    // REPLACE 'your-war-name' with your actual project name from IntelliJ
+    
     fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/products')
       .then((response) => {
         if (!response.ok) {
@@ -55,7 +55,7 @@ const Shop = () => {
 			  </div>
 
 			  <div className="image-container">
-				{/* Uses the 'img' field from your Java Laptop class */}
+				
 				<img src={laptop.img} alt={laptop.name} />
 			  </div>
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './Profile.css'; // Reusing Profile CSS for table styles
+import './Profile.css'; 
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch ALL orders (No userId param = All orders)
+    
     fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/orders')
       .then(res => res.json())
       .then(data => {

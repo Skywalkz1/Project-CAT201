@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; // Import useState
+import React, { useEffect, useState } from 'react'; 
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Quotation.css';
 
@@ -8,21 +8,21 @@ const Quotation = () => {
   
   const { selectedProducts, grandTotal } = location.state || {};
 
-  // 1. Generate Quote ID once and store it in state
+  
   const [quoteId] = useState('QT-' + Math.floor(100000 + Math.random() * 900000));
   
-  // 2. State for saving status
+  
   const [isSaved, setIsSaved] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    // Check for login
+    
     const userStr = localStorage.getItem('user');
     if (userStr) {
       setCurrentUser(JSON.parse(userStr));
     }
 
-    // Redirect if no products
+    
     if (!selectedProducts || selectedProducts.length === 0) {
       navigate('/customize');
     }
@@ -30,7 +30,7 @@ const Quotation = () => {
 
   if (!selectedProducts) return null;
 
-  // --- NEW: Save Function ---
+  
   const handleSaveQuotation = async () => {
     if (!currentUser) {
       alert("Please login first to save this quotation.");
@@ -77,7 +77,7 @@ const Quotation = () => {
           <div className="document-info">
             <h2>QUOTATION</h2>
             <p><strong>Date:</strong> {new Date().toLocaleDateString()}</p>
-            {/* Use the stable quoteId from state */}
+            
             <p><strong>Quote ID:</strong> {quoteId}</p> 
           </div>
         </div>
@@ -121,12 +121,12 @@ const Quotation = () => {
       <div className="quotation-actions hide-on-print">
         <button className="action-btn back-btn" onClick={() => navigate('/customize')}>Back</button>
         
-        {/* New Save Button */}
+        
         <button 
           className="action-btn checkout-btn" 
           onClick={handleSaveQuotation}
           disabled={isSaved}
-          style={{ backgroundColor: isSaved ? '#10b981' : '#38bdf8' }} // Green if saved
+          style={{ backgroundColor: isSaved ? '#10b981' : '#38bdf8' }} 
         >
           {isSaved ? "Saved!" : "Save Quotation"}
         </button>

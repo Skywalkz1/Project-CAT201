@@ -4,20 +4,20 @@ import './ForgotPassword.css';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success'
+  const [status, setStatus] = useState('idle'); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('loading');
 
-    // MOCK LOGIC: Simulate an API call taking 1.5 seconds
+    
     setTimeout(() => {
       console.log(`Password reset link sent to: ${email}`);
       setStatus('success');
     }, 1500);
   };
 
-  // --- Render: Success State (After sending) ---
+  
   if (status === 'success') {
     return (
       <div className="forgot-page-container">
@@ -45,7 +45,7 @@ const ForgotPassword = () => {
     );
   }
 
-  // --- Render: Form State (Default) ---
+  
   return (
     <div className="forgot-page-container">
       <div className="forgot-card">

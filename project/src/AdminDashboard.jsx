@@ -8,7 +8,7 @@ const AdminDashboard = () => {
   const [formData, setFormData] = useState({ id: '', category: 'cat_cpu_intel', name: '', price: '' });
   const [isEditing, setIsEditing] = useState(false);
 
-  // --- 1. Security Check ---
+  
   useEffect(() => {
     const userStr = localStorage.getItem('user');
     if (!userStr) {
@@ -17,7 +17,7 @@ const AdminDashboard = () => {
     }
     const user = JSON.parse(userStr);
     
-    // Ensure case-insensitive check for role
+    
     if (user.role.toLowerCase() !== 'admin') {
       alert("Access Denied: Admins Only");
       navigate('/');
@@ -26,7 +26,7 @@ const AdminDashboard = () => {
     }
   }, [navigate]);
 
-  // --- 2. Fetch Data ---
+  
   const fetchAllProducts = async () => {
     try {
       const res = await fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/customize');
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
     } catch (err) { console.error(err); }
   };
 
-  // --- 3. Handle Submit (Add or Update) ---
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const method = isEditing ? 'PUT' : 'POST';
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
     fetchAllProducts();
   };
 
-  // --- 4. Handle Delete ---
+  
   const handleDelete = async (id) => {
     if(!window.confirm("Are you sure?")) return;
     
@@ -69,7 +69,7 @@ const AdminDashboard = () => {
     fetchAllProducts();
   };
 
-  // --- 5. Populate Form for Edit ---
+  
   const handleEdit = (prod) => {
     setFormData({
       id: prod.id,
@@ -89,7 +89,7 @@ const AdminDashboard = () => {
     <div className="admin-container">
       <h1 className="admin-title">Manage Products</h1>
       
-      {/* --- FORM SECTION --- */}
+      
       <div className="admin-form-container">
         <h3 className="form-title">{isEditing ? "Edit Product" : "Add New Product"}</h3>
         <form onSubmit={handleSubmit} className="admin-form">
@@ -110,7 +110,7 @@ const AdminDashboard = () => {
              <option value="cat_cpu_amd">AMD CPU</option>
              <option value="cat_cooler">Cooler</option>
              <option value="cat_mobo_intel">Mobo Intel</option>
-             {/* Add all your other categories here */}
+             
           </select>
           <input 
             className="admin-input input-name"
@@ -140,7 +140,7 @@ const AdminDashboard = () => {
         </form>
       </div>
 
-      {/* --- LIST SECTION --- */}
+      
       <table className="products-table">
         <thead>
           <tr className="table-head-row">

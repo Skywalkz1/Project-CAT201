@@ -8,11 +8,11 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   
-  // 1. State for product data
+  
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Upgrade Options Data (Static)
+  
   const ramOptions = [
     { name: "16GB DDR5 (Standard)", price: 0 },
     { name: "32GB DDR5 (+RM 400)", price: 400 },
@@ -31,9 +31,9 @@ const ProductDetail = () => {
   const [showRam, setShowRam] = useState(false);
   const [showSSD, setShowSSD] = useState(false);
 
-  // 2. Fetch Single Product
+  
   useEffect(() => {
-    // REPLACE 'your-war-name' with your actual project name
+    
     fetch(`http://localhost:8080/servlet_jsx_playground_war_exploded/api/products/${id}`)
       .then(res => {
         if (!res.ok) throw new Error("Product not found");
@@ -45,7 +45,7 @@ const ProductDetail = () => {
       })
       .catch(err => {
         console.error(err);
-        navigate('/shop'); // Redirect back to shop if ID is invalid
+        navigate('/shop'); 
       });
   }, [id, navigate]);
 
@@ -80,13 +80,10 @@ const ProductDetail = () => {
 
       <div className="detail-container">
         
-        {/* LEFT COLUMN */}
+        
         <div className="detail-left">
           <div className="image-box">
              <div className="image-header">
-                {/* Checking if badge exists because Java returns an empty array 
-                   if the DB column was null 
-                */}
                 {product.badge && product.badge.map((b, index) => (
                     <div key={index} className="spec-badge-text">
                         <span className="spec-title">{b}</span>
@@ -99,7 +96,7 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* RIGHT COLUMN */}
+        
         <div className="detail-right">
           <h1 className="detail-title">{product.name}</h1>
           <p className="price-range">
@@ -111,7 +108,7 @@ const ProductDetail = () => {
             <button className="outline-btn">View More</button>
           </div>
 
-          {/* Model Selection */}
+          
           <div className="config-section">
             <label>Model</label>
             <select className="model-select">
@@ -119,7 +116,7 @@ const ProductDetail = () => {
                 <option>Ultra 7 RTX4060 1TB</option>
             </select>
 
-            {/* RAM Accordion */}
+            
             <div className="accordion">
                 <div 
                   className={`accordion-header ${showRam ? 'active' : ''}`} 
@@ -143,7 +140,7 @@ const ProductDetail = () => {
                 )}
             </div>
 
-            {/* SSD Accordion */}
+            
             <div className="accordion">
                 <div 
                   className={`accordion-header ${showSSD ? 'active' : ''}`} 
@@ -168,7 +165,7 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* Total & Footer Actions */}
+          
           <div className="total-section">
              <span>Order total:</span>
              <span className="total-price">RM{totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import './Customize.css';
 
 function Customize() {
-  const navigate = useNavigate(); // Initialize the hook
-  const [pcData, setPcData] = useState([]); // State to hold DB data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const navigate = useNavigate(); 
+  const [pcData, setPcData] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
   
   const [cartItems, setCartItems] = useState({});
   const [openCategoryId, setOpenCategoryId] = useState(null);
 
-  // --- NEW: Fetch Data from Servlet ---
+  
   useEffect(() => {
     fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/customize')
       .then(response => {
@@ -21,7 +21,7 @@ function Customize() {
         return response.json();
       })
       .then(data => {
-        setPcData(data); // Store the data from Java
+        setPcData(data); 
         setLoading(false);
       })
       .catch(err => {
@@ -60,7 +60,7 @@ function Customize() {
     });
   };
 
-  // Helper to find product inside the DYNAMIC pcData
+  
 	const findProductById = (productId) => {
     for (const cat of pcData) {
       const found = cat.products.find(p => p.id === productId);
@@ -77,21 +77,21 @@ function Customize() {
   const handleNext = () => {
     const selectedProducts = [];
 
-// 1. Iterate through all items in the cart
+
     for (const [productId, qty] of Object.entries(cartItems)) {
       const product = findProductById(productId);
       
       if (product && qty > 0) {
-        // Find category name for context
+        
         let categoryName = '';
         for (const cat of pcData) {
           if (cat.products.find(p => p.id === productId)) {
-            categoryName = cat.name.replace(/^--\s*|\s*--$/g, ''); // Clean up category name
+            categoryName = cat.name.replace(/^--\s*|\s*--$/g, ''); 
             break;
           }
         }
 
-        // Add full details to the list
+        
         selectedProducts.push({
           ...product,
           quantity: qty,
@@ -101,23 +101,23 @@ function Customize() {
       }
     }
 
-// 2. Check if cart is empty
+
     if (selectedProducts.length === 0) {
       alert("Please select at least one item before proceeding.");
       return;
     }
 
-// 3. Navigate to the Quotation page and pass the data
+
     navigate('/quotation', { state: { selectedProducts, grandTotal } });
   };
 
-  // --- LOADING STATE ---
+  
   if (loading) return <div className="builder-container" style={{color:'white', textAlign:'center', marginTop:'50px'}}>Loading PC Parts...</div>;
   if (error) return <div className="builder-container" style={{color:'red', textAlign:'center', marginTop:'50px'}}>{error}</div>;
 
   return (
     <div className="builder-container">
-      {/* Summary Bar */}
+      
       <div className="summary-bar">
         <button className="reset-btn" onClick={() => setCartItems({})}>Reset</button>
         <div className="grand-total-section">
@@ -134,13 +134,13 @@ function Customize() {
         <div>Total</div>
       </div>
 
-      {/* Main Loop using pcData from Database */}
+      
       {pcData.map((category) => {
         const selectedProductId = category.products.find(p => cartItems[p.id])?.id;
         const isSelected = !!selectedProductId;
         const isOpen = openCategoryId === category.id;
         
-        // ... (The rest of your JSX logic remains exactly the same)
+        
         let mainRowContent;
 
         if (isSelected) {

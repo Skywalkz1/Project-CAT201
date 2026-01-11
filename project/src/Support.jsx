@@ -3,7 +3,7 @@ import Footer from './Footer';
 import './Support.css';
 
 const Support = () => {
-  // Form State
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,7 +12,7 @@ const Support = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Auto-fill name/email if user is logged in
+  
   useEffect(() => {
     const userStr = localStorage.getItem('user');
     if (userStr) {
@@ -30,7 +30,7 @@ const Support = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page refresh
+    e.preventDefault(); 
     setIsSubmitting(true);
 
     try {
@@ -42,7 +42,6 @@ const Support = () => {
 
       if (response.ok) {
         alert("Ticket submitted! We will contact you shortly.");
-        // Clear message/orderId but keep name/email for convenience
         setFormData(prev => ({ ...prev, orderId: '', message: '' }));
       } else {
         alert("Failed to submit ticket. Please try again.");
@@ -59,13 +58,13 @@ const Support = () => {
     <>
       <div className="support-page">
         
-        {/* HERO HEADER */}
+        
         <div className="support-header">
           <h1 className="support-title">Support <span className="highlight">Center</span></h1>
           <p className="support-subtitle">We are here to help. Search our FAQs or contact our team directly.</p>
         </div>
 
-        {/* QUICK ACTION CARDS */}
+        
         <div className="support-grid">
           <div className="support-card">
             <h3>WARRANTY CHECK</h3>
@@ -86,10 +85,10 @@ const Support = () => {
           </div>
         </div>
 
-        {/* MAIN CONTENT: FAQ & FORM */}
+        
         <div className="support-content-row">
           
-          {/* LEFT: CONTACT FORM */}
+          
           <div className="contact-section">
             <h2>Send us a Message</h2>
             <form className="contact-form" onSubmit={handleSubmit}>
@@ -147,7 +146,7 @@ const Support = () => {
             </form>
           </div>
 
-          {/* RIGHT: FAQ */}
+          
           <div className="faq-section">
             <h2>Frequently Asked Questions</h2>
             

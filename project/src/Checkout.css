@@ -14,7 +14,7 @@
   gap: 40px;
 }
 
-/* Payment Form Styling */
+
 .payment-section {
   flex: 2;
   background: #1e1e1e;
@@ -87,7 +87,7 @@
   cursor: not-allowed;
 }
 
-/* Order Summary Styling */
+
 .summary-section {
   flex: 1;
   background: #1e1e1e;
@@ -125,9 +125,9 @@
   color: #fff;
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 768px) {
   .checkout-container {
-    flex-direction: column-reverse; /* Summary on top for mobile usually looks better, or keep standard */
+    flex-direction: column-reverse; 
   }
 }

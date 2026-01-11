@@ -2,7 +2,7 @@ import React from 'react';
 import './OurLocations.css';
 import locationBg from './assets/image_3a7561.jpg';
 
-// --- SVG Icons (Same as before) ---
+
 const StoreIconSVG = () => (
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -47,7 +47,7 @@ const OurLocations = () => {
   return (
     <div className="our-locations-page">
       
-      {/* --- NEW HEADER SECTION --- */}
+      
       <div className="location-banner">
         <div className="banner-overlay">
             <h1>Our Locations</h1>
@@ -57,7 +57,7 @@ const OurLocations = () => {
       <div className="our-locations-container">
         <div className="location-content-wrapper">
           
-          {/* Left Side: Map */}
+          
           <div className="map-wrapper">
             <iframe
               title="HoodTech Location"
@@ -71,7 +71,7 @@ const OurLocations = () => {
             />
           </div>
 
-          {/* Right Side: Details */}
+          
           <div className="contact-list">
             
             <ContactItem

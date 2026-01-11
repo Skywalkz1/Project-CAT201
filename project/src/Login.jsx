@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; 
 import './Login.css';
 
 const Login = () => {
-  const navigate = useNavigate(); // Hook for redirection
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
   
-  // New state for handling errors/loading
+  
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,7 +27,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // 1. Send Data to Java Backend
+      
       const response = await fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/login', {
         method: 'POST',
         headers: {
@@ -36,18 +36,18 @@ const Login = () => {
         body: JSON.stringify(formData),
       });
 
-      // 2. Check if successful
+      
       if (response.ok) {
         const userData = await response.json();
         console.log('Login Successful:', userData);
         
-        // Optional: Save user to localStorage so they stay logged in
+        
         localStorage.setItem('user', JSON.stringify(userData));
 
-        // 3. Redirect to Home Page
+        
         navigate('/'); 
       } else {
-        // Handle 401 Unauthorized
+        
         const errorData = await response.json();
         setErrorMessage(errorData.error || 'Login failed');
       }
@@ -67,7 +67,7 @@ const Login = () => {
           <p>Sign in to access your HoodTech account</p>
         </div>
 
-        {/* Display Error Message if any */}
+        
         {errorMessage && (
           <div style={{ color: '#ff4d4d', textAlign: 'center', marginBottom: '15px', fontWeight: 'bold' }}>
             {errorMessage}
