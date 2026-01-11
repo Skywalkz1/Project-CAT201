@@ -10,24 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="104c0352-5004-4ecc-8be0-531a67ba0a7e" name="Changes" comment="Fix directory file">
-      <change afterPath="$PROJECT_DIR$/../.idea/Project201.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/src/Shop.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/Shop.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/controller/AdminProductServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/controller/CustomizeServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/controller/LoginServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/controller/QuotationHistoryServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/controller/SaveQuotationServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/controller/SignupServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/controller/UpdateProfileServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/model/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/model/Product.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/model/QuotationHistoryItem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hoodtech/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/Project201.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/copilot.data.migration.agent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
