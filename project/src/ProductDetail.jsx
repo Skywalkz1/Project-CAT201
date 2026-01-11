@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { laptops } from './productsData'; //
 import './ProductDetail.css';
-import { useCart } from './CartContext'; // <--- 1. Import Context
+import { useCart } from './CartContext'; 
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart } = useCart(); // <--- 2. Get function from context
+  const { addToCart } = useCart();
+  
+  // 1. State for product data
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Upgrade Options Data
+  // Upgrade Options Data (Static)
   const ramOptions = [
     { name: "16GB DDR5 (Standard)", price: 0 },
     { name: "32GB DDR5 (+RM 400)", price: 400 },
@@ -23,44 +25,53 @@ const ProductDetail = () => {
     { name: "4TB NVMe SSD (+RM 900)", price: 900 },
   ];
 
-  // State
   const [quantity, setQuantity] = useState(1);
   const [selectedRam, setSelectedRam] = useState(ramOptions[0]);
   const [selectedSSD, setSelectedSSD] = useState(ssdOptions[0]);
   const [showRam, setShowRam] = useState(false);
   const [showSSD, setShowSSD] = useState(false);
 
+  // 2. Fetch Single Product
   useEffect(() => {
-    // Find product by ID
-    const found = laptops.find(p => p.id === parseInt(id));
-    setProduct(found);
-  }, [id]);
+    // REPLACE 'your-war-name' with your actual project name
+    fetch(`http://localhost:8080/servlet_jsx_playground_war_exploded/api/products/${id}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Product not found");
+        return res.json();
+      })
+      .then(data => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        navigate('/shop'); // Redirect back to shop if ID is invalid
+      });
+  }, [id, navigate]);
 
-  if (!product) return <div className="detail-loading">Loading...</div>;
+  if (loading || !product) return <div className="detail-loading" style={{color:'white', padding:'40px'}}>Loading Product...</div>;
 
   const unitPrice = product.basePrice + selectedRam.price + selectedSSD.price; 
-  const totalPrice = unitPrice * quantity; //
+  const totalPrice = unitPrice * quantity; 
 
   const handleAddToCart = () => {
     const cartItem = {
       id: product.id,
       name: product.name,
-      img: product.img, //
-      ram: selectedRam.name, //
-      ssd: selectedSSD.name, //
-      quantity: quantity, //
-      totalPrice: totalPrice, //
-      unitPrice: unitPrice // Useful for logic later
+      img: product.img, 
+      ram: selectedRam.name, 
+      ssd: selectedSSD.name, 
+      quantity: quantity, 
+      totalPrice: totalPrice, 
+      unitPrice: unitPrice 
     };
 
-    addToCart(cartItem); // <--- 3. Send to Context
-      
-      };
+    addToCart(cartItem); 
+  };
 
   return (
     <div className="detail-page">
       
-      {/* Top Navigation / Back Button */}
       <div className="detail-nav">
          <button onClick={() => navigate('/shop')} className="back-link">
            &larr; Back to Shop
@@ -69,15 +80,16 @@ const ProductDetail = () => {
 
       <div className="detail-container">
         
-        {/* LEFT COLUMN: IMAGE & BADGES */}
+        {/* LEFT COLUMN */}
         <div className="detail-left">
           <div className="image-box">
-             {/* Dynamic Header inside image box similar to screenshot */}
              <div className="image-header">
-                {product.badge.map((b, index) => (
+                {/* Checking if badge exists because Java returns an empty array 
+                   if the DB column was null 
+                */}
+                {product.badge && product.badge.map((b, index) => (
                     <div key={index} className="spec-badge-text">
                         <span className="spec-title">{b}</span>
-                        {/* Adding mock subtitle for aesthetic match */}
                         <span className="spec-sub">Performance</span> 
                     </div>
                 ))}
@@ -87,7 +99,7 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: INFO & CONFIG */}
+        {/* RIGHT COLUMN */}
         <div className="detail-right">
           <h1 className="detail-title">{product.name}</h1>
           <p className="price-range">
