@@ -9,9 +9,13 @@ const Profile = () => {
   const [newName, setNewName] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   
-  // --- NEW STATE for History ---
+  // Quotation History State
   const [quotations, setQuotations] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
+
+  // --- NEW: Purchase History State ---
+  const [purchases, setPurchases] = useState([]); 
+  const [loadingPurchases, setLoadingPurchases] = useState(false);
 
   // 1. Load User Data
   useEffect(() => {
@@ -25,7 +29,7 @@ const Profile = () => {
     setNewName(userData.fullName);
   }, [navigate]);
 
-  // --- NEW: Fetch Quotation History when User is loaded ---
+  // 2. Fetch Quotation History
   useEffect(() => {
     if (user && user.id) {
       setLoadingHistory(true);
@@ -39,21 +43,21 @@ const Profile = () => {
           console.error("Failed to load history", err);
           setLoadingHistory(false);
         });
+        
+      // NOTE: You can fetch purchase history here in the future when backend is ready
+      // setLoadingPurchases(true);
+      // fetch(...).then(...)
     }
-  }, [user]); // Runs whenever 'user' is set
+  }, [user]);
 
-  // 2. Handle Name Change Input
   const handleInputChange = (e) => {
     setNewName(e.target.value);
   };
 
-  // 3. Save Changes to Backend
   const handleSave = async () => {
     if (!user) return;
     setIsSaving(true);
-
     try {
-      // Send PUT request to Java Backend
       const response = await fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/profile/update', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -64,13 +68,9 @@ const Profile = () => {
       });
 
       if (response.ok) {
-        // A. Update Local User State
         const updatedUser = { ...user, fullName: newName };
         setUser(updatedUser);
-        
-        // B. Update LocalStorage (So the change persists on refresh)
         localStorage.setItem('user', JSON.stringify(updatedUser));
-        
         alert("Profile updated successfully!");
       } else {
         alert("Failed to update profile. Please try again.");
@@ -98,14 +98,16 @@ const Profile = () => {
 
   if (!user) return null;
 
- return (
+  return (
     <div className="profile-container">
       <div className="profile-card">
-        {/* ... Header and Personal Info Section (Keep exact same) ... */}
+        {/* Header Section */}
         <div className="profile-header">
           <h2>My Profile</h2>
           <p>Manage and protect your account</p>
         </div>
+
+        {/* Profile Form */}
         <div className="profile-content">
           <div className="profile-row">
             <label>Name</label>
@@ -125,7 +127,7 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* --- NEW SECTION: QUOTATION HISTORY --- */}
+        {/* --- Quotation History Section --- */}
         <div className="history-section">
           <h3>Quotation History</h3>
           <div className="history-table-container">
@@ -146,11 +148,45 @@ const Profile = () => {
                 <tbody>
                   {quotations.map((q) => (
                     <tr key={q.quoteId}>
-                      {/* Format the date string nicely */}
                       <td>{new Date(q.date).toLocaleDateString()}</td> 
                       <td className="quote-id-cell">{q.quoteId}</td>
                       <td>{q.total.toFixed(2)}</td>
                       <td><span className="status-badge">Saved</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+
+        {/* --- NEW: Purchase History Section --- */}
+        <div className="history-section">
+          <h3>Purchase History</h3>
+          <div className="history-table-container">
+            {loadingPurchases ? (
+              <p style={{textAlign:'center', color:'#888'}}>Loading purchases...</p>
+            ) : purchases.length === 0 ? (
+              <p style={{textAlign:'center', color:'#888'}}>No purchases found.</p>
+            ) : (
+              <table className="history-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Order ID</th>
+                    <th>Items</th>
+                    <th>Total (RM)</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {purchases.map((p) => (
+                    <tr key={p.orderId}>
+                      <td>{p.date}</td> 
+                      <td className="quote-id-cell">{p.orderId}</td>
+                      <td>{p.itemCount} Items</td>
+                      <td>{p.total}</td>
+                      <td><span className="status-badge">{p.status}</span></td>
                     </tr>
                   ))}
                 </tbody>
