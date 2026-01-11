@@ -12,6 +12,7 @@ import About from './About';
 import Customize from './Customize.jsx';
 import Contact from './Contact';
 import Shop from './Shop.jsx';
+import ProductDetail from './ProductDetail.jsx';
 import Support from './Support.jsx';
 import Login from './Login.jsx'; 
 import Signup from './Signup.jsx'; 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/support" element={<Support />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           
           {/* Auth Routes */}
           <Route path="/login" element={<Login />} />
