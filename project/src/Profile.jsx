@@ -9,15 +9,15 @@ const Profile = () => {
   const [newName, setNewName] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   
-  // Quotation History State
+  
   const [quotations, setQuotations] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
 
-  // --- NEW: Purchase History State ---
+  
   const [purchases, setPurchases] = useState([]); 
   const [loadingPurchases, setLoadingPurchases] = useState(false);
 
-  // 1. Load User Data
+  
   useEffect(() => {
     const userStr = localStorage.getItem('user');
     if (!userStr) {
@@ -29,10 +29,10 @@ const Profile = () => {
     setNewName(userData.fullName);
   }, [navigate]);
 
-  // 2. Fetch Quotation History
+  
 useEffect(() => {
     if (user && user.id) {
-      // 1. Fetch Quotations (Existing)
+      
       setLoadingHistory(true);
       fetch(`http://localhost:8080/servlet_jsx_playground_war_exploded/api/quotation/history?userId=${user.id}`)
         .then(res => res.json())
@@ -42,12 +42,12 @@ useEffect(() => {
         })
         .catch(err => setLoadingHistory(false));
         
-      // 2. Fetch Purchases (NEW)
+      
       setLoadingPurchases(true);
       fetch(`http://localhost:8080/servlet_jsx_playground_war_exploded/api/orders?userId=${user.id}`)
         .then(res => res.json())
         .then(data => {
-          setPurchases(data); // Store in state
+          setPurchases(data); 
           setLoadingPurchases(false);
         })
         .catch(err => {
@@ -108,13 +108,13 @@ useEffect(() => {
   return (
     <div className="profile-container">
       <div className="profile-card">
-        {/* Header Section */}
+        
         <div className="profile-header">
           <h2>My Profile</h2>
           <p>Manage and protect your account</p>
         </div>
 
-        {/* Profile Form */}
+        
         <div className="profile-content">
           <div className="profile-row">
             <label>Name</label>
@@ -134,7 +134,7 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* --- Quotation History Section --- */}
+        
         <div className="history-section">
           <h3>Quotation History</h3>
           <div className="history-table-container">
@@ -167,7 +167,7 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* --- NEW: Purchase History Section --- */}
+        
         <div className="history-section">
           <h3>Purchase History</h3>
           <div className="history-table-container">

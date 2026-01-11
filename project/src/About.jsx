@@ -1,8 +1,7 @@
 import React from 'react';
-import Header from './Header'; // This contains your "About Us" text
+import Header from './Header'; 
 import Card from './Card';
 
-// Images
 import profilePic1 from './assets/Syazril.png';
 import profilePic2 from './assets/Haris_Zakuwan.jpg';
 import profilePic3 from './assets/AqilAsyraf.jpeg';

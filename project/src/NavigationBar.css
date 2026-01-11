@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* --- Navbar Container --- */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -19,8 +19,7 @@
   will-change: transform;
 }
 
-/* --- Logo Styling --- */
-/* Added text-decoration: none for the Link wrapper */
+
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -50,7 +49,7 @@
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
-/* --- Navigation Links (Desktop) --- */
+
 .nav-links {
   display: flex;
   list-style: none;
@@ -73,23 +72,21 @@
   letter-spacing: 0.5px;
   position: relative;
   transition: color 0.3s ease;
-  
-  /* NEW: Important for converting button to link */
   text-decoration: none; 
   display: inline-block;
 }
 
-/* Hover Effect */
+
 .nav-item.btn-link:hover {
   color: #0099ff;
 }
 
-/* Active Page Effect (React Router automatically adds .active class) */
+
 .nav-item.btn-link.active {
   color: #0099ff;
 }
 
-/* Underline Animation */
+
 .nav-item.btn-link::after {
   content: '';
   position: absolute;
@@ -101,13 +98,13 @@
   transition: width 0.3s ease;
 }
 
-/* Expand underline on Hover OR if Active */
+
 .nav-item.btn-link:hover::after,
 .nav-item.btn-link.active::after {
   width: 100%;
 }
 
-/* --- Right Side Actions --- */
+
 .navbar-actions {
   display: flex;
   align-items: center;
@@ -149,13 +146,13 @@
   border: 2px solid #050505;
 }
 
-/* --- Mobile Toggle --- */
+
 .mobile-toggle {
   display: none;
   cursor: pointer;
 }
 
-/* --- Mobile Menu Overlay --- */
+
 .mobile-menu-overlay {
   position: fixed;
   top: 0;
@@ -189,7 +186,7 @@
   gap: 30px;
 }
 
-/* Mobile Link Styling */
+
 .mobile-link {
   background: transparent;
   border: none;
@@ -200,8 +197,6 @@
   text-align: left;
   font-family: 'Inter', sans-serif;
   transition: color 0.2s;
-  
-  /* NEW: Removes underline from <a> */
   text-decoration: none; 
   display: block;
 }
@@ -219,7 +214,7 @@
 }
 
 .admin-trigger {
-  color: #ef4444 !important; /* Red color for admin */
+  color: #ef4444 !important; 
   display: flex;
   align-items: center;
   gap: 5px;
@@ -228,7 +223,7 @@
 
 .dropdown-menu {
   position: absolute;
-  top: 100%; /* Below the navbar */
+  top: 100%; 
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
   border: 1px solid #1e293b;
   border-radius: 8px;
@@ -270,7 +265,7 @@
   color: #38bdf8;
 }
 
-/* --- Mobile Responsiveness --- */
+
 @media (max-width: 900px) {
   .navbar {
     padding: 15px 20px;

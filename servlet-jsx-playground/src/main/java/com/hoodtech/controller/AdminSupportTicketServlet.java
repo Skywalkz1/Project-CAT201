@@ -46,7 +46,7 @@ public class AdminSupportTicketServlet extends HttpServlet {
         }
     }
 
-    // 1. GET: Fetch All Tickets
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupHeaders(resp);
@@ -81,7 +81,7 @@ public class AdminSupportTicketServlet extends HttpServlet {
         }
     }
 
-    // 2. PUT: Update Ticket Status
+    
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupHeaders(resp);
@@ -109,7 +109,7 @@ public class AdminSupportTicketServlet extends HttpServlet {
         }
     }
 
-    // Handle Pre-flight
+    
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupHeaders(resp);

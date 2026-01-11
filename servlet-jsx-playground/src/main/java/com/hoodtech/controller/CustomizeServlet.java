@@ -18,16 +18,16 @@ import java.util.List;
 @WebServlet("/api/customize")
 public class CustomizeServlet extends HttpServlet {
 
-    // DB Credentials
-    private static final String URL = "jdbc:oracle:thin:@//localhost:1521/xe"; // Check your DB Service name
-    private static final String USER = "system"; // Your DB User
-    private static final String PASS = "1234"; // Your DB Password
+    
+    private static final String URL = "jdbc:oracle:thin:@//localhost:1521/xe"; 
+    private static final String USER = "system"; 
+    private static final String PASS = "1234"; 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // 1. Setup CORS (Allow React to talk to Java)
-        resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173"); // Or port 3000
+        
+        resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173"); 
         resp.setHeader("Access-Control-Allow-Methods", "GET");
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
@@ -35,11 +35,11 @@ public class CustomizeServlet extends HttpServlet {
         List<Category> categoryList = new ArrayList<>();
 
         try {
-            // 2. Connect to Database
+            
             Class.forName("oracle.jdbc.driver.OracleDriver");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 
-                // 3. Query: Get all categories first
+                
                 String catSql = "SELECT * FROM categories ORDER BY sort_order";
                 PreparedStatement catStmt = conn.prepareStatement(catSql);
                 ResultSet catRs = catStmt.executeQuery();
@@ -50,9 +50,7 @@ public class CustomizeServlet extends HttpServlet {
 
                     Category category = new Category(catId, catName);
 
-                    // 4. Nested Query: Get products for THIS category
-                    // (Note: In a massive app, we would use a JOIN, but for this assignment,
-                    // a nested query is easier to understand and implements the logic clearly)
+
                     String prodSql = "SELECT * FROM products WHERE cat_id = ?";
                     PreparedStatement prodStmt = conn.prepareStatement(prodSql);
                     prodStmt.setString(1, catId);
@@ -73,11 +71,11 @@ public class CustomizeServlet extends HttpServlet {
                 }
             }
 
-            // 5. Convert list to JSON using Gson
+            
             Gson gson = new Gson();
             String json = gson.toJson(categoryList);
 
-            // 6. Send Response
+            
             PrintWriter out = resp.getWriter();
             out.print(json);
             out.flush();

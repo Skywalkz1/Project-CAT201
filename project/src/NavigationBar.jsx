@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom'; // <--- IMPORT useLocation
+import { NavLink, useLocation } from 'react-router-dom'; 
 import './NavigationBar.css';
-import { useCart } from './CartContext'; // <--- 1. Import Context
+import { useCart } from './CartContext'; 
 
-// --- Icons (Keep your existing icon components here) ---
+
 const CartIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M9 20C9 21.1046 8.10457 22 7 22C5.89543 22 5 21.1046 5 20C5 18.8954 5.89543 18 7 18C8.10457 18 9 18.8954 9 20Z" fill="white"/>
@@ -31,7 +31,7 @@ const UserIcon = () => (
   </svg>
 );
 
-// NEW: Chevron Icon
+
 const ChevronDownIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
     <path d="M6 9l6 6 6-6"/>
@@ -40,20 +40,20 @@ const ChevronDownIcon = () => (
 
 function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false); // <--- New State
-  const location = useLocation(); // <--- Hook to detect page changes
+  const [isAdmin, setIsAdmin] = useState(false); 
+  const location = useLocation(); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showAdminMenu, setShowAdminMenu] = useState(false);
-  const { cartCount } = useCart(); // <--- 2. Get count from Context
+  const { cartCount } = useCart(); 
 
-  // Check for Admin Role whenever the URL changes
+  
   useEffect(() => {
     const userStr = localStorage.getItem('user');
     if (userStr) {
-      setIsLoggedIn(true); // User exists
+      setIsLoggedIn(true); 
       try {
         const user = JSON.parse(userStr);
-        // Case-insensitive check for 'admin'
+        
         if (user.role && user.role.toLowerCase() === 'admin') {
           setIsAdmin(true);
         } else {
@@ -63,10 +63,10 @@ function Navbar() {
         setIsAdmin(false);
       }
     } else {
-      setIsLoggedIn(false); // No user
+      setIsLoggedIn(false); 
       setIsAdmin(false);
     }
-  }, [location]); // <--- Re-run this check every time location changes
+  }, [location]); 
 
   const toggleMobileMenu = () => {
     setIsMobileOpen(!isMobileOpen);
@@ -76,20 +76,20 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Logo Section */}
+      
       <NavLink to="/" className="navbar-logo" onClick={closeMenu}>
         <div className="logo-circle">
           <span className="logo-text">Hood<br/>Tech</span>
         </div>
       </NavLink>
 
-      {/* Desktop Navigation Links */}
+      
       <ul className="nav-links desktop-only">
         <li><NavLink to="/about" className="nav-item btn-link">About</NavLink></li>
         <li><NavLink to="/customize" className="nav-item btn-link">Customize Your Own</NavLink></li>
         <li><NavLink to="/shop" className="nav-item btn-link">Shop Now</NavLink></li>
         
-        {/* --- CONDITIONALLY RENDER ADMIN LINK --- */}
+        
         {isAdmin && (
           <li 
             className="nav-item-dropdown"
@@ -105,7 +105,7 @@ function Navbar() {
                 <li><NavLink to="/admin/products" className="dropdown-link">Manage Products</NavLink></li>
                 <li><NavLink to="/admin/quotations" className="dropdown-link">Quotation History</NavLink></li>
                 
-                {/* --- NEW LINK HERE --- */}
+                
                 <li><NavLink to="/admin/orders" className="dropdown-link">Check Orders</NavLink></li>
                 <li><NavLink to="/admin/tickets" className="dropdown-link">Support Tickets</NavLink></li>
                 
@@ -118,7 +118,7 @@ function Navbar() {
         <li><NavLink to="/contact" className="nav-item btn-link">Contact Us</NavLink></li>
       </ul>
 
-      {/* Actions: Cart & Hamburger */}
+      
       <div className="navbar-actions">
         
         <NavLink 
@@ -129,7 +129,7 @@ function Navbar() {
           <UserIcon />
         </NavLink>
 
-        {/* WRAPPER CHANGED TO NavLink */}
+        
         <NavLink to="/cart" className="navbar-cart" style={{ textDecoration: 'none' }}>
           <div className="cart-container">
             <CartIcon />
@@ -141,13 +141,13 @@ function Navbar() {
         </div>
       </div>
 
-      {/* --- Mobile Menu Overlay --- */}
+      
       <div className={`mobile-menu-overlay ${isMobileOpen ? 'active' : ''}`}>
         <ul className="mobile-nav-links">
           <li><NavLink to="/about" onClick={closeMenu} className="mobile-link">About</NavLink></li>
           <li><NavLink to="/customize" onClick={closeMenu} className="mobile-link">Customize Your Own</NavLink></li>
           
-          {/* --- MOBILE ADMIN LINK --- */}
+          
           {isAdmin && (
              <>
                <li><NavLink to="/admin/products" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Manage Products</NavLink></li>

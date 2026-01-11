@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Layout Components
+
 import Navbar from "./NavigationBar.jsx";
 import Footer from "./Footer.jsx";
 import ScrollToTop from "./ScrollToTop.jsx";
 
-// Page Components
+
 import Home from './Home';
 import About from './About';
 import Customize from './Customize.jsx';
@@ -43,7 +43,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           
-          {/* Auth Routes */}
+          
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />

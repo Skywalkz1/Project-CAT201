@@ -1,4 +1,4 @@
-/* Container Background - Matches Shop.css #050505 */
+
 .detail-page {
   background-color: #050505; 
   min-height: 100vh;
@@ -30,7 +30,7 @@
   gap: 50px;
 }
 
-/* --- Left Column: Image Box --- */
+
 .detail-left {
   flex: 1;
   min-width: 350px;
@@ -100,7 +100,7 @@
 .hero-laptop-img:hover { transform: scale(1.05); }
 
 
-/* --- Right Column: Details --- */
+
 .detail-right {
   flex: 1;
   min-width: 350px;
@@ -140,10 +140,10 @@
   color: black;
 }
 
-/* Config Section */
+
 .config-section label {
   display: block;
-  color: #38bdf8; /* Blue Label */
+  color: #38bdf8; 
   margin-bottom: 8px;
   font-weight: 600;
 }
@@ -160,10 +160,10 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Accordions */
+
 .accordion {
   margin-bottom: 15px;
-  background-color: #0f172a; /* Slate Dark */
+  background-color: #0f172a; 
   border: 1px solid #1e293b;
   border-radius: 4px;
 }
@@ -212,12 +212,12 @@
 .option-row:hover { background-color: #1e293b; color: white; }
 
 .option-row.selected {
-  background-color: rgba(56, 189, 248, 0.1); /* Faded Blue BG */
+  background-color: rgba(56, 189, 248, 0.1); 
   color: #38bdf8;
   font-weight: 700;
 }
 
-/* Total Section */
+
 .total-section {
   margin-top: 40px;
   font-size: 1.3rem;
@@ -231,7 +231,7 @@
   color: white;
 }
 
-/* Footer Buttons */
+
 .detail-footer {
   margin-top: 20px;
   display: flex;
@@ -285,7 +285,7 @@
 
 .buy-now-btn {
   flex: 1;
-  background: #a1a1aa; /* Grey-ish white per screenshot */
+  background: #a1a1aa; 
   color: black;
   border: none;
   height: 45px;
@@ -297,7 +297,7 @@
 
 .buy-now-btn:hover { background: white; }
 
-/* Mobile */
+
 @media (max-width: 768px) {
   .detail-container { flex-direction: column; gap: 20px; }
   .image-box { min-height: 300px; }

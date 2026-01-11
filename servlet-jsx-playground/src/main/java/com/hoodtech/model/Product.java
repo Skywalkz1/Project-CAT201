@@ -10,5 +10,5 @@ public class Product {
         this.name = name;
         this.price = price;
     }
-    // Getters are required for Gson to work automatically
+    
 }

@@ -15,7 +15,7 @@ const Checkout = () => {
     e.preventDefault();
     setIsProcessing(true);
 
-    // Get User ID from LocalStorage
+    
     const userStr = localStorage.getItem('user');
     const user = userStr ? JSON.parse(userStr) : null;
 
@@ -25,7 +25,7 @@ const Checkout = () => {
         return;
     }
 
-    // 1. Prepare Data
+    
     const orderData = {
         userId: user.id,
         total: grandTotal,
@@ -33,8 +33,8 @@ const Checkout = () => {
     };
 
     try {
-        // 2. Send to Backend
-        // REPLACE 'your-war-name' with actual project name
+        
+        
         const response = await fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/orders', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -45,7 +45,7 @@ const Checkout = () => {
              // 3. Success Flow
              clearCart(); 
              alert("Payment Successful! Order saved.");
-             navigate('/profile'); // Redirect to profile to see history
+             navigate('/profile'); 
         } else {
              alert("Payment failed on server.");
         }
@@ -62,16 +62,16 @@ const Checkout = () => {
     return <div className="checkout-empty">Your cart is empty. Redirecting...</div>;
   }
 
-  // ... (Return JSX remains exactly the same as your file) ...
+ 
   return (
     <div className="checkout-page">
       <div className="checkout-container">
         
-        {/* Left Side: Payment Form */}
+        
         <div className="payment-section">
           <h2>Payment Details</h2>
           <form onSubmit={handlePayment}>
-             {/* ... Inputs remain the same ... */}
+             
             <div className="form-group">
               <label>Cardholder Name</label>
               <input type="text" placeholder="John Doe" required />
@@ -97,7 +97,7 @@ const Checkout = () => {
           </form>
         </div>
 
-        {/* Right Side: Order Summary */}
+        
         <div className="summary-section">
           <h3>Order Summary</h3>
           <div className="summary-items">

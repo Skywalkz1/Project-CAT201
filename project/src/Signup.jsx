@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; 
 import './Signup.css';
 
 const Signup = () => {
-  const navigate = useNavigate(); // Hook for redirection
+  const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -12,7 +12,7 @@ const Signup = () => {
     confirmPassword: ''
   });
   
-  // UI States
+  
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,7 +28,7 @@ const Signup = () => {
     e.preventDefault();
     setErrorMessage('');
 
-    // 1. Client-side Validation
+    
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage("Passwords do not match!");
       return;
@@ -37,7 +37,7 @@ const Signup = () => {
     setIsLoading(true);
 
     try {
-      // 2. Send Data to Backend
+      
       const response = await fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/signup', {
         method: 'POST',
         headers: {
@@ -50,10 +50,10 @@ const Signup = () => {
         }),
       });
 
-      // 3. Handle Response
+      
       if (response.ok) {
         alert("Account created successfully! Please sign in.");
-        navigate('/login'); // Redirect to Login page
+        navigate('/login'); 
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.error || "Registration failed");
@@ -74,7 +74,7 @@ const Signup = () => {
           <p>Join HoodTech for exclusive deals and support</p>
         </div>
 
-        {/* Error Message Display */}
+        
         {errorMessage && (
           <div style={{ color: '#ff4d4d', textAlign: 'center', marginBottom: '15px', fontWeight: 'bold' }}>
             {errorMessage}

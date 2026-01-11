@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './ServiceSection.css';
 
-// --- Icons (Keep your existing icon components here) ---
+
 const ShieldIcon = () => (<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>);
 const ExchangeIcon = () => (<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>);
 const SupportIcon = () => (<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>);
@@ -19,7 +19,7 @@ const CleaningIcon = () => (<svg width="32" height="32" viewBox="0 0 24 24" fill
 const ServiceSection = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   
-  // Use a ref to get the exact height of the hidden content for smooth animation
+  
   const contentRef = useRef(null);
   const [contentHeight, setContentHeight] = useState('0px');
 
@@ -39,14 +39,14 @@ const ServiceSection = () => {
     { icon: <CleaningIcon />, title: ["Lifetime", "Free Dust Cleaning"], isLast: true }
   ];
 
-  // Split into fixed (top) and expandable (bottom) lists
+  
   const initialServices = allServices.slice(0, 8);
   const expandableServices = allServices.slice(8);
 
-  // Update height calculation for the animation
+  
   useEffect(() => {
     if (isExpanded) {
-      // Calculate the scroll height of the inner content
+      
       setContentHeight(`${contentRef.current.scrollHeight}px`);
     } else {
       setContentHeight('0px');
@@ -63,7 +63,7 @@ const ServiceSection = () => {
         </p>
       </div>
 
-      {/* Grid 1: Always Visible (Static) */}
+      
       <div className="service-grid">
         {initialServices.map((service, index) => (
           <div key={index} className="service-item">
@@ -75,13 +75,13 @@ const ServiceSection = () => {
         ))}
       </div>
 
-      {/* Animation Wrapper for Extra Items */}
+      
       <div 
         className="expandable-wrapper" 
         style={{ height: contentHeight }}
       >
         <div ref={contentRef} className="expandable-content">
-          {/* Grid 2: Hidden items (matches columns of Grid 1) */}
+          
           <div className="service-grid" style={{ marginBottom: 0 }}>
             {expandableServices.map((service, index) => (
               <div 

@@ -3,7 +3,7 @@ package com.hoodtech.controller;
 import com.google.gson.Gson;
 import com.hoodtech.model.Laptop;
 
-// JAVAX Imports
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +19,7 @@ import java.util.List;
 @WebServlet("/api/products/*")
 public class LaptopServlet extends HttpServlet {
 
-    // UPDATE THESE CREDENTIALS
+    
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String DB_USER = "system";
     private static final String DB_PASS = "1234";
@@ -28,7 +28,7 @@ public class LaptopServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // CORS Headers for React
+        
         resp.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
         resp.setHeader("Access-Control-Allow-Methods", "GET");
         resp.setHeader("Content-Type", "application/json");
@@ -39,14 +39,14 @@ public class LaptopServlet extends HttpServlet {
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
 
             if (pathInfo == null || pathInfo.equals("/")) {
-                // Fetch ALL Laptops
+                
                 List<Laptop> laptops = getAllLaptops(conn);
                 String json = gson.toJson(laptops);
                 try (PrintWriter out = resp.getWriter()) {
                     out.print(json);
                 }
             } else {
-                // Fetch SINGLE Laptop by ID
+                
                 try {
                     String idStr = pathInfo.substring(1);
                     int id = Integer.parseInt(idStr);
@@ -71,7 +71,7 @@ public class LaptopServlet extends HttpServlet {
         }
     }
 
-    // --- Helper Methods ---
+    
 
     private List<Laptop> getAllLaptops(Connection conn) throws SQLException {
         List<Laptop> list = new ArrayList<>();

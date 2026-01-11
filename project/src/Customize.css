@@ -1,14 +1,14 @@
-/* Customize.css */
+
 
 :root {
-  /* Color Palette - Modern Dark Theme */
-  --bg-body: #0f172a;        /* Deep Slate Blue/Black */
-  --bg-card: #1e293b;        /* Lighter Slate for containers */
-  --bg-input: #334155;       /* Input backgrounds */
-  --text-main: #f8fafc;      /* Off-white text */
-  --text-muted: #94a3b8;     /* Gray text for secondary info */
   
-  --primary: #3b82f6;        /* Bright Blue */
+  --bg-body: #0f172a;        
+  --bg-card: #1e293b;        
+  --bg-input: #334155;       
+  --text-main: #f8fafc;      
+  --text-muted: #94a3b8;     
+  
+  --primary: #3b82f6;        
   --primary-hover: #2563eb;
   --accent-green: #10b981;
   
@@ -33,10 +33,10 @@ body {
   margin: 0 auto;
 }
 
-/* --- Headers --- */
+
 .grid-header {
   display: grid;
-  /* Columns: [Add Btn] [Product] [Qty] [Total] */
+  
   grid-template-columns: 60px 1fr 100px 100px;
   gap: 16px;
   margin-bottom: 12px;
@@ -55,17 +55,17 @@ body {
   padding-left: 4px; 
 }
 
-/* --- Main Product Row --- */
+
 .product-row {
   display: grid;
   grid-template-columns: 60px 1fr 100px 100px;
   gap: 16px;
   align-items: center;
   margin-bottom: 20px;
-  position: relative; /* For dropdown positioning context */
+  position: relative; 
 }
 
-/* --- Buttons (Add/Remove) --- */
+
 .btn-square {
   width: 44px;
   height: 44px;
@@ -87,10 +87,10 @@ body {
   border-color: var(--primary);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); /* Blue glow */
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); 
 }
 
-/* --- Selection Box (The "Card") --- */
+
 .selection-box {
   background-color: var(--bg-card);
   color: var(--text-muted);
@@ -98,7 +98,7 @@ body {
   border-radius: var(--border-radius);
   font-weight: 500;
   font-size: 1rem;
-  border: 1px solid #475569; /* Subtle border */
+  border: 1px solid #475569; 
   cursor: pointer;
   text-align: left;
   white-space: nowrap; 
@@ -109,43 +109,43 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-/* State: When an item is selected (optional utility class you can add in React) */
+
 .selection-box.has-item {
   color: var(--text-main);
   background-color: #2d3b55;
   border-color: var(--primary);
 }
 
-/* Hover Effect */
+
 .selection-box:hover {
   border-color: var(--primary);
   background-color: #1e293b;
   color: white;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15); /* Focus ring effect */
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15); 
 }
 
-/* --- Quantity & Total --- */
+
 .qty-display, .total-display {
   text-align: center;
   font-weight: 600;
   font-size: 1rem;
   color: var(--text-main);
-  font-variant-numeric: tabular-nums; /* Keeps numbers aligned */
+  font-variant-numeric: tabular-nums; 
 }
 
 .total-display {
-  color: var(--accent-green); /* Highlights the price */
+  color: var(--accent-green); 
 }
 
-/* --- Dropdown List (Accordion) --- */
+
 .selection-list-container {
   grid-column: 2 / span 1; 
   background: var(--bg-card);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   border: 1px solid var(--primary);
-  border-top: none; /* Merges with the box above */
+  border-top: none; 
   
-  margin-top: -16px; /* Pulls it up to overlap bottom of selection box */
+  margin-top: -16px; 
   margin-bottom: 24px;
   overflow: hidden;
   z-index: 10;
@@ -179,7 +179,7 @@ body {
   font-weight: 600;
 }
 
-/* --- Summary Bar --- */
+
 .summary-bar {
   background-color: var(--bg-card);
   padding: 20px 30px;
@@ -190,7 +190,7 @@ body {
   margin-bottom: 30px;
   border: 1px solid #334155;
   
-  /* Sticky bottom or just nice shadow */
+  
   box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
 }
 
@@ -206,7 +206,7 @@ body {
 }
 
 .reset-btn:hover {
-  border-color: #ef4444; /* Red border on hover */
+  border-color: #ef4444; 
   color: #ef4444;
   background: rgba(239, 68, 68, 0.1);
 }
@@ -235,7 +235,7 @@ body {
   color: white;
   border: none;
   padding: 14px 40px;
-  border-radius: 50px; /* Pill shape */
+  border-radius: 50px; 
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
@@ -248,7 +248,7 @@ body {
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
 }
 
-/* --- Quantity Controls (Inside the Selection Box logic if needed) --- */
+
 .qty-controls {
   display: flex;
   align-items: center;

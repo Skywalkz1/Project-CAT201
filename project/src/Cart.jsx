@@ -1,14 +1,14 @@
 import React from 'react';
 import './Cart.css';
 import { NavLink } from 'react-router-dom';
-import { useCart } from './CartContext'; // <--- Ensure this path is correct
-import { useNavigate } from 'react-router-dom'; // <--- Import hook
+import { useCart } from './CartContext'; 
+import { useNavigate } from 'react-router-dom'; 
 
 const Cart = () => {
   const { cartItems, removeFromCart } = useCart();
-  const navigate = useNavigate(); // <--- Initialize hook
+  const navigate = useNavigate(); 
 
-  // Calculate Grand Total
+  
   const grandTotal = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
 
   return (
@@ -28,10 +28,10 @@ const Cart = () => {
             {cartItems.map((item, index) => (
               <div key={index} className="cart-item-row">
                 
-                {/* Product Image */}
+                
                 <img src={item.img} alt={item.name} className="cart-item-img" />
                 
-                {/* Product Details */}
+                
                 <div className="item-info">
                    <h3>{item.name}</h3>
                    <div className="item-specs">
@@ -42,7 +42,7 @@ const Cart = () => {
                    </div>
                 </div>
 
-                {/* Price & Remove Button */}
+                
                 <div className="item-actions">
                    <span className="item-price">
                      RM {item.totalPrice.toLocaleString()}
@@ -59,7 +59,7 @@ const Cart = () => {
               </div>
             ))}
 
-            {/* Footer Summary */}
+            
             <div className="cart-summary">
                 <div>
                    <span className="total-label">Subtotal:</span>

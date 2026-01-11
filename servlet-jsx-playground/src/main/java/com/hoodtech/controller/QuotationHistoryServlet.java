@@ -1,7 +1,7 @@
 package com.hoodtech.controller;
 
 import com.google.gson.Gson;
-import com.hoodtech.model.QuotationHistoryItem; // We will create this small model below
+import com.hoodtech.model.QuotationHistoryItem; 
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,7 +43,7 @@ public class QuotationHistoryServlet extends HttpServlet {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-                // Fetch quotations sorted by newest first
+                
                 String sql = "SELECT quote_id, created_at, total_amount FROM quotations WHERE user_id = ? ORDER BY created_at DESC";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setInt(1, Integer.parseInt(userIdParam));
@@ -52,7 +52,7 @@ public class QuotationHistoryServlet extends HttpServlet {
                 while (rs.next()) {
                     historyList.add(new QuotationHistoryItem(
                             rs.getString("quote_id"),
-                            rs.getString("created_at"), // Timestamp as string is fine for display
+                            rs.getString("created_at"), 
                             rs.getDouble("total_amount")
                     ));
                 }

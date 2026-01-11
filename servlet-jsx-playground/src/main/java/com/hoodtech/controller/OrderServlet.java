@@ -25,17 +25,17 @@ public class OrderServlet extends HttpServlet {
 
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String DB_USER = "system";
-    private static final String DB_PASS = "1234"; // UPDATE THIS
+    private static final String DB_PASS = "1234"; 
 
     private Gson gson = new Gson();
 
-    // 1. SAVE NEW ORDER
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupCors(resp);
 
         try {
-            // Read JSON body
+            
             BufferedReader reader = req.getReader();
             JsonObject json = JsonParser.parseReader(reader).getAsJsonObject();
 
@@ -43,7 +43,7 @@ public class OrderServlet extends HttpServlet {
             double total = json.get("total").getAsDouble();
             int itemCount = json.get("itemCount").getAsInt();
 
-            // Generate unique Order ID
+            
             String orderId = "ORD-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
@@ -66,7 +66,7 @@ public class OrderServlet extends HttpServlet {
         }
     }
 
-    // 2. GET ORDERS (History or Admin View)
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupCors(resp);
@@ -75,10 +75,10 @@ public class OrderServlet extends HttpServlet {
 
         String sql;
         if (userIdParam != null) {
-            // Fetch specific user history
+            
             sql = "SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC";
         } else {
-            // Fetch ALL orders (Admin)
+            
             sql = "SELECT * FROM orders ORDER BY order_date DESC";
         }
 
@@ -91,7 +91,7 @@ public class OrderServlet extends HttpServlet {
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    // Convert Timestamp to readable String
+                    
                     Timestamp ts = rs.getTimestamp("order_date");
                     String dateStr = ts.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
@@ -114,7 +114,7 @@ public class OrderServlet extends HttpServlet {
         }
     }
 
-    // Handle OPTIONS for CORS preflight
+    
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setupCors(resp);

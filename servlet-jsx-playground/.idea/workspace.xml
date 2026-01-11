@@ -39,6 +39,10 @@
     &quot;accountId&quot;: &quot;d1e81555-d2b1-4d72-87c8-54777ad8c20e&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -67,6 +71,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 9.0.113.executor": "Run",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
@@ -91,8 +96,6 @@
           <value>
             <map>
               <entry key="Tomcat 9.0.113" value="STOPPED" />
-              <entry key="Tomcat-9" value="STOPPED" />
-              <entry key="index.jsp" value="STOPPED" />
             </map>
           </value>
         </entry>
@@ -191,14 +194,14 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.138" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="104c0352-5004-4ecc-8be0-531a67ba0a7e" name="Changes" comment="" />
+      <changelist id="23fa4141-fe50-4ccf-893b-58d958c07a90" name="Changes" comment="" />
       <created>1768125842481</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -206,6 +209,7 @@
       <workItem from="1768125843756" duration="1653000" />
       <workItem from="1768128367445" duration="276000" />
       <workItem from="1768128745662" duration="539000" />
+      <workItem from="1768146694895" duration="658000" />
     </task>
     <servers />
   </component>
