@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.experience-container {
+  background-color: #050505; 
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+.experience-header {
+  margin-bottom: 50px;
+  max-width: 800px;
+}
+
+.experience-header h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.experience-header p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #cccccc; 
+  margin: 0 auto;
+}
+
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  flex-wrap: wrap; 
+}
+
+
+.stat-card {
+  background-color: #111111; 
+  border: 1px solid #222; 
+  border-radius: 12px;
+  padding: 40px 20px;
+  flex: 1; 
+  min-width: 250px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px); 
+  border-color: #333;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0099ff; 
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+
+@media (max-width: 768px) {
+  .experience-header h2 {
+    font-size: 2.2rem;
+  }
+  
+  .stats-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card {
+    width: 100%; 
+    max-width: 400px;
+  }
+}

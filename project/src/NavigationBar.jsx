@@ -1,15 +1,9 @@
-// 1. The Import Section (Keep this at the top)
-import { Link } from 'react-router-dom';
-import './navbar.css';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom'; 
+import './NavigationBar.css';
+import { useCart } from './CartContext'; 
 
-// Simple SVG for the dropdown arrow (down chevron)
-const ChevronDown = () => (
-  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '5px' }}>
-    <path d="M1 1L5 5L9 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
 
-// SVG for the Shopping Cart
 const CartIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M9 20C9 21.1046 8.10457 22 7 22C5.89543 22 5 21.1046 5 20C5 18.8954 5.89543 18 7 18C8.10457 18 9 18.8954 9 20Z" fill="white"/>
@@ -17,46 +11,158 @@ const CartIcon = () => (
     <path d="M1 1H4L6.68 14.39C6.77144 14.8504 7.02191 15.264 7.38755 15.5583C7.75318 15.8526 8.2107 16.009 8.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
+const MenuIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 12H21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3 6H21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3 18H21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const CloseIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 6L6 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const UserIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+    <circle cx="12" cy="7" r="4"></circle>
+  </svg>
+);
+
+
+const ChevronDownIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M6 9l6 6 6-6"/>
+  </svg>
+);
 
 function Navbar() {
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false); 
+  const location = useLocation(); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showAdminMenu, setShowAdminMenu] = useState(false);
+  const { cartCount } = useCart(); 
+
+  
+  useEffect(() => {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      setIsLoggedIn(true); 
+      try {
+        const user = JSON.parse(userStr);
+        
+        if (user.role && user.role.toLowerCase() === 'admin') {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (e) {
+        setIsAdmin(false);
+      }
+    } else {
+      setIsLoggedIn(false); 
+      setIsAdmin(false);
+    }
+  }, [location]); 
+
+  const toggleMobileMenu = () => {
+    setIsMobileOpen(!isMobileOpen);
+  };
+
+  const closeMenu = () => setIsMobileOpen(false);
+
   return (
     <nav className="navbar">
-      {/* Logo Section */}
-      <div className="navbar-logo">
+      
+      <NavLink to="/" className="navbar-logo" onClick={closeMenu}>
         <div className="logo-circle">
           <span className="logo-text">Hood<br/>Tech</span>
         </div>
-      </div>
+      </NavLink>
 
-      {/* Navigation Links Section */}
-      <ul className="nav-links">
-        <li>
-          {/* Points to /about defined in App.jsx */}
-          <Link to="/about" className="nav-item">About</Link>
-        </li>
-        <li>
-          {/* Points to /services (your PC Builder) defined in App.jsx */}
-          <Link to="/services" className="nav-item">Customize Your Own</Link>
-        </li>
-        <li>
-          {/* Link to Shop page */}
-          <Link to="/shoplaptop" className="nav-item">Shop Now </Link>
-        </li>
-        <li>
-          <Link to="/support" className="nav-item">Support </Link>
-        </li>
-        <li>
-          <Link to="/ContactUs" className="nav-item">Contact Us </Link>
-        </li>
+      
+      <ul className="nav-links desktop-only">
+        <li><NavLink to="/about" className="nav-item btn-link">About</NavLink></li>
+        <li><NavLink to="/customize" className="nav-item btn-link">Customize Your Own</NavLink></li>
+        <li><NavLink to="/shop" className="nav-item btn-link">Shop Now</NavLink></li>
+        
+        
+        {isAdmin && (
+          <li 
+            className="nav-item-dropdown"
+            onMouseEnter={() => setShowAdminMenu(true)}
+            onMouseLeave={() => setShowAdminMenu(false)}
+          >
+            <span className="nav-item btn-link admin-trigger">
+              Admin Panel <ChevronDownIcon />
+            </span>
+            
+            {showAdminMenu && (
+              <ul className="dropdown-menu">
+                <li><NavLink to="/admin/products" className="dropdown-link">Manage Products</NavLink></li>
+                <li><NavLink to="/admin/quotations" className="dropdown-link">Quotation History</NavLink></li>
+                
+                
+                <li><NavLink to="/admin/orders" className="dropdown-link">Check Orders</NavLink></li>
+                <li><NavLink to="/admin/tickets" className="dropdown-link">Support Tickets</NavLink></li>
+                
+              </ul>
+            )}
+          </li>
+        )}
+
+        <li><NavLink to="/support" className="nav-item btn-link">Support</NavLink></li>
+        <li><NavLink to="/contact" className="nav-item btn-link">Contact Us</NavLink></li>
       </ul>
 
-      {/* Cart Section */}
-      <div className="navbar-cart">
-        <Link to="#" className="cart-container">
-          <CartIcon />
-          <span className="cart-badge">0</span>
-        </Link>
+      
+      <div className="navbar-actions">
+        
+        <NavLink 
+          to={isLoggedIn ? "/profile" : "/login"} 
+          className="cart-container" 
+          style={{ textDecoration: 'none' }}
+        >
+          <UserIcon />
+        </NavLink>
+
+        
+        <NavLink to="/cart" className="navbar-cart" style={{ textDecoration: 'none' }}>
+          <div className="cart-container">
+            <CartIcon />
+            <span className="cart-badge">{cartCount}</span>
+          </div>
+        </NavLink>
+        <div className="mobile-toggle" onClick={toggleMobileMenu}>
+          {isMobileOpen ? <CloseIcon /> : <MenuIcon />}
+        </div>
       </div>
+
+      
+      <div className={`mobile-menu-overlay ${isMobileOpen ? 'active' : ''}`}>
+        <ul className="mobile-nav-links">
+          <li><NavLink to="/about" onClick={closeMenu} className="mobile-link">About</NavLink></li>
+          <li><NavLink to="/customize" onClick={closeMenu} className="mobile-link">Customize Your Own</NavLink></li>
+          
+          
+          {isAdmin && (
+             <>
+               <li><NavLink to="/admin/products" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Manage Products</NavLink></li>
+               <li><NavLink to="/admin/quotations" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Quotation History</NavLink></li>
+               <li><NavLink to="/admin/tickets" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Support Tickets</NavLink></li>
+               <li><NavLink to="/admin/orders" onClick={closeMenu} className="mobile-link" style={{color:'#ef4444'}}>Check Orders</NavLink></li>
+             </>
+          )}
+          
+          <li><NavLink to="/shop" onClick={closeMenu} className="mobile-link">Shop Now</NavLink></li>
+          <li><NavLink to="/support" onClick={closeMenu} className="mobile-link">Support</NavLink></li>
+          <li><NavLink to="/contact" onClick={closeMenu} className="mobile-link">Contact Us</NavLink></li>
+        </ul>
+      </div>
+
     </nav>
   );
 }

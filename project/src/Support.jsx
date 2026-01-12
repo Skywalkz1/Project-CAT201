@@ -1,19 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
 import './Support.css';
 
 const Support = () => {
+  
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    orderId: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  
+  useEffect(() => {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      const user = JSON.parse(userStr);
+      setFormData(prev => ({
+        ...prev,
+        name: user.fullName || '',
+        email: user.email || ''
+      }));
+    }
+  }, []);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('http://localhost:8080/servlet_jsx_playground_war_exploded/api/support/ticket', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        alert("Ticket submitted! We will contact you shortly.");
+        setFormData(prev => ({ ...prev, orderId: '', message: '' }));
+      } else {
+        alert("Failed to submit ticket. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Server error.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <div className="support-page">
         
-        {/* HERO HEADER */}
+        
         <div className="support-header">
           <h1 className="support-title">Support <span className="highlight">Center</span></h1>
           <p className="support-subtitle">We are here to help. Search our FAQs or contact our team directly.</p>
         </div>
 
-        {/* QUICK ACTION CARDS */}
+        
         <div className="support-grid">
           <div className="support-card">
             <h3>WARRANTY CHECK</h3>
@@ -23,7 +74,9 @@ const Support = () => {
           <div className="support-card">
             <h3>DRIVERS & DOWNLOADS</h3>
             <p>Get the latest BIOS updates and drivers for your system.</p>
-            <button className="support-btn">Download</button>
+            <a href="https://www.asus.com/my/support/download-center/" target="_blank" rel="noopener noreferrer">
+                <button className="support-btn">Download</button>
+            </a>
           </div>
           <div className="support-card">
             <h3>TRACK ORDER</h3>
@@ -32,34 +85,68 @@ const Support = () => {
           </div>
         </div>
 
-        {/* MAIN CONTENT: FAQ & FORM */}
+        
         <div className="support-content-row">
           
-          {/* LEFT: CONTACT FORM */}
+          
           <div className="contact-section">
             <h2>Send us a Message</h2>
-            <form className="contact-form">
+            <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Name</label>
-                <input type="text" placeholder="Enter your name" />
+                <input 
+                    type="text" 
+                    name="name"
+                    placeholder="Enter your name" 
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                />
               </div>
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="Enter your email" />
+                <input 
+                    type="email" 
+                    name="email"
+                    placeholder="Enter your email" 
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
               </div>
               <div className="form-group">
                 <label>Order ID (Optional)</label>
-                <input type="text" placeholder="#HT-12345" />
+                <input 
+                    type="text" 
+                    name="orderId"
+                    placeholder="#HT-12345" 
+                    value={formData.orderId}
+                    onChange={handleChange}
+                />
               </div>
               <div className="form-group">
                 <label>Message</label>
-                <textarea rows="5" placeholder="How can we help you?"></textarea>
+                <textarea 
+                    rows="5" 
+                    name="message"
+                    placeholder="How can we help you?"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                ></textarea>
               </div>
-              <button type="button" className="submit-btn">Submit Ticket</button>
+              <button 
+                type="submit" 
+                className="submit-btn"
+                disabled={isSubmitting}
+                style={{ opacity: isSubmitting ? 0.7 : 1 }}
+              >
+                {isSubmitting ? "Sending..." : "Submit Ticket"}
+              </button>
             </form>
           </div>
 
-          {/* RIGHT: FAQ */}
+          
           <div className="faq-section">
             <h2>Frequently Asked Questions</h2>
             
@@ -84,7 +171,6 @@ const Support = () => {
         </div>
 
       </div>
-      <Footer />
     </>
   );
 };

@@ -1,0 +1,140 @@
+
+.signup-page-container {
+  background-color: #050505;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+
+.signup-card {
+  background-color: #0f172a; 
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px; 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-card:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.1);
+}
+
+
+.signup-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.signup-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.signup-header .highlight {
+  color: #38bdf8; 
+}
+
+.signup-header p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.input-group label {
+  display: block;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.input-group input::placeholder {
+  color: #64748b;
+}
+
+
+.signup-btn {
+  width: 100%;
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.signup-btn:hover {
+  background-color: #38bdf8;
+  color: white;
+}
+
+
+.signup-footer {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.signin-link {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.signin-link:hover {
+  color: #38bdf8;
+}
+
+
+@media (max-width: 500px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
